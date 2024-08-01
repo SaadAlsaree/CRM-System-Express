@@ -1,0 +1,47 @@
+@baseUrl = http://localhost:5000
+@urlPath = api/v1
+
+
+
+###
+POST {{baseUrl}}/{{urlPath}}/auth/role/new
+Content-Type: application/json
+Accept: application/json
+withCredentials: true
+
+{
+    "roleName": "SuAdmin",
+    "roleCode": "100"
+}
+
+###
+GET {{baseUrl}}/{{urlPath}}/auth/roles
+Content-Type: application/json
+Accept: application/json
+withCredentials: true
+
+
+###
+GET {{baseUrl}}/{{urlPath}}/auth/role/669d117d822b71b483422cf5
+Content-Type: application/json
+Accept: application/json
+withCredentials: true
+
+
+###
+PUT {{baseUrl}}/{{urlPath}}/auth/role/6697dc1860872864c6f78521
+Content-Type: application/json
+Accept: application/json
+withCredentials: true
+
+{
+    "roleName": "Admin",
+    "roleCode": "111"
+}
+
+###
+DELETE {{baseUrl}}/{{urlPath}}/auth/role/6697dc1860872864c6f78521
+Content-Type: application/json
+Accept: application/json
+withCredentials: true
+

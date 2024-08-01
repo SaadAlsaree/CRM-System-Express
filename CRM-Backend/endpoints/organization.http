@@ -1,0 +1,61 @@
+@baseUrl = http://localhost:5000
+@urlPath = api/v1
+
+
+
+###
+POST {{baseUrl}}/{{urlPath}}/organizations/new
+Content-Type: application/json
+Accept: application/json
+withCredentials: true
+
+{
+    "name": "Organization 3",
+    "code": "ORG4",
+    "type": "A",
+    "slug": "organization-4",
+    "phone": "123456789",
+    "email": "org-4@inns.com",
+    "address": "123, Street, City, Country",
+    "website": "http://localhost:3000",
+    "avatar": "https://www.google.com",
+    "description": "This is organization 4"
+}
+
+###
+GET {{baseUrl}}/{{urlPath}}/organizations
+Content-Type: application/json
+Accept: application/json
+withCredentials: true
+
+###
+GET {{baseUrl}}/{{urlPath}}/organizations/66a3ca26a3169dbd1eb21dc4
+Content-Type: application/json
+Accept: application/json
+withCredentials: true
+
+
+###
+PUT {{baseUrl}}/{{urlPath}}/organizations/66a111c17af5a05da524cefb
+Content-Type: application/json
+Accept: application/json
+withCredentials: true
+
+{
+    "name": "Organization 3",
+    "code": "ORG3",
+    "type": "A",
+    "slug": "organization-3",
+    "phone": "123456789",
+    "email": "org-3@inns.com",
+    "address": "123, Street, City, Country",
+    "website": "http://localhost:3000",
+    "avatar": "https://www.google.com",
+    "description": "This is organization 3 updated"
+}
+
+###
+DELETE {{baseUrl}}/{{urlPath}}/organizations/669cfcb80cfdf01ad8744c8d
+Content-Type: application/json
+Accept: application/json
+withCredentials: true

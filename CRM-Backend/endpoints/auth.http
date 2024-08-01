@@ -1,0 +1,46 @@
+@baseUrl = http://localhost:5000
+@urlPath = api/v1
+
+
+
+###
+POST {{baseUrl}}/{{urlPath}}/auth/new
+Content-Type: application/json
+Accept: application/json
+withCredentials: true
+
+{
+    "userLogin": "saad",
+    "password": "123456",
+    "avatarColor": "red",
+    "username": "saad alsaree",
+    "role": ["6697dc1860872864c6f78521"],
+    "rank": "6697dc7d85d92fa2fee7fade",
+    "organizationId": "66a3ca26a3169dbd1eb21dc4",
+    "departmentId": "66a3cb4da3169dbd1eb21dda"
+}
+
+
+###
+GET {{baseUrl}}/{{urlPath}}/currentuser
+Content-Type: application/json
+Accept: application/json
+withCredentials: true
+
+
+###
+POST {{baseUrl}}/{{urlPath}}/auth/login
+Content-Type: application/json
+Accept: application/json
+withCredentials: true
+
+{
+    "userLogin": "saad",
+    "password": "123456"
+}
+
+###
+POST {{baseUrl}}/{{urlPath}}/auth/logout
+Content-Type: application/json
+Accept: application/json
+withCredentials: true

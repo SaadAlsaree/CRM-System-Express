@@ -1,0 +1,55 @@
+@baseUrl = http://localhost:5000
+@urlPath = api/v1
+
+
+
+###
+POST {{baseUrl}}/{{urlPath}}/departments/new
+Content-Type: application/json
+Accept: application/json
+withCredentials: true
+
+{
+    "name": "Department 4",
+    "code": "D-4",
+    "slug": "Department-4",
+    "email": "dep-4@inss.com",
+    "phone": "3553534534",
+    "avatar": "https://www.google.com",
+    "description": "This is organization 4",
+    "organization": "6697deec85d92fa2fee7faf9"
+}
+
+###
+GET {{baseUrl}}/{{urlPath}}/departments/6697deec85d92fa2fee7faf9
+Content-Type: application/json
+Accept: application/json
+withCredentials: true
+
+###
+GET {{baseUrl}}/{{urlPath}}/department/669cfdc50cfdf01ad8744c94
+Content-Type: application/json
+Accept: application/json
+withCredentials: true
+
+
+###
+PUT {{baseUrl}}/{{urlPath}}/departments/669cfdc50cfdf01ad8744c94
+Content-Type: application/json
+Accept: application/json
+withCredentials: true
+
+{
+    "name": "Organization 1",
+    "code": "ORG1",
+    "slug": "organization-1",
+    "avatar": "https://www.google.com",
+    "description": "This is organization 1 updated",
+    "organization": "669cfca30cfdf01ad8744c88"
+}
+
+###
+DELETE {{baseUrl}}/{{urlPath}}/departments/666ddb95d691500bc70e865c
+Content-Type: application/json
+Accept: application/json
+withCredentials: true

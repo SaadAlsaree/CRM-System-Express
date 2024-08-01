@@ -1,0 +1,47 @@
+@baseUrl = http://localhost:5000
+@urlPath = api/v1
+
+
+
+###
+POST {{baseUrl}}/{{urlPath}}/auth/rank/new
+Content-Type: application/json
+Accept: application/json
+withCredentials: true
+
+{
+    "rankName": "employee",
+    "rankCode": "300"
+}
+
+###
+GET {{baseUrl}}/{{urlPath}}/auth/ranks
+Content-Type: application/json
+Accept: application/json
+withCredentials: true
+
+
+###
+GET {{baseUrl}}/{{urlPath}}/auth/rank/6697dc7d85d92fa2fee7fade
+Content-Type: application/json
+Accept: application/json
+withCredentials: true
+
+
+###
+PUT {{baseUrl}}/{{urlPath}}/auth/rank/6697dc7d85d92fa2fee7fade
+Content-Type: application/json
+Accept: application/json
+withCredentials: true
+
+{
+     "rankName": "employee",
+    "rankCode": "310"
+}
+
+###
+DELETE {{baseUrl}}/{{urlPath}}/auth/rank/6697dc5c85d92fa2fee7fad9
+Content-Type: application/json
+Accept: application/json
+withCredentials: true
+

@@ -1,0 +1,4 @@
+npm install express mongoose mongodb ejs cors dotenv @bull-board/express @bull-board/ui @sendgrid/mail @socket.io/redis-adapter @types/jest bcryptjs bull bunyan cloudinary compression cookie-session express-async-errors express-async-handler helmet hpp http-status-codes ip joi jsonwebtoken lodash moment morgan nodemailer redis socket.io swagger-stats ts-jest tsc-alias typescript typescript-transform-paths
+
+
+npm i -D @types/bcryptjs @types/bunyan @types/compression @types/cookie-session @types/cors @types/ejs @types/express @types/hpp @types/ip @types/jsonwebtoken @types/lodash @types/morgan @types/nodemailer @types/swagger-stats @typescript-eslint/eslint-plugin @typescript-eslint/parser eslint eslint-config-prettier jest nodemon prettier ts-node tsconfig-paths
