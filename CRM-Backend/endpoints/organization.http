@@ -29,7 +29,7 @@ Accept: application/json
 withCredentials: true
 
 ###
-GET {{baseUrl}}/{{urlPath}}/organizations/66a3ca26a3169dbd1eb21dc4
+GET {{baseUrl}}/{{urlPath}}/organizations/66a679011ca86ecf5b5204ef
 Content-Type: application/json
 Accept: application/json
 withCredentials: true
@@ -56,6 +56,13 @@ withCredentials: true
 
 ###
 DELETE {{baseUrl}}/{{urlPath}}/organizations/669cfcb80cfdf01ad8744c8d
+Content-Type: application/json
+Accept: application/json
+withCredentials: true
+
+
+###
+GET {{baseUrl}}/{{urlPath}}/organizations/user-count/66a678811ca86ecf5b5204ea
 Content-Type: application/json
 Accept: application/json
 withCredentials: true

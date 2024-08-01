@@ -31,8 +31,6 @@ const userSchema: Schema = new Schema({
     tasks: { type: Boolean, default: true },
     cases: { type: Boolean, default: true },
   },
-  organization: { type: String, required: true },
-  department: { type: String, required: true },
   leave: [{ type: Schema.Types.ObjectId, ref: 'Leave' }],
   files: [{ type: Schema.Types.ObjectId, ref: 'File' }],
 }, { timestamps: true, versionKey: false });

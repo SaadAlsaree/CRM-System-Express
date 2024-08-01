@@ -55,8 +55,7 @@ export class Create {
       userLogin,
       username,
       uId,
-      organization: organization.name,
-      department: department.name,
+
     } as IUserDocument;
 
     // check if user already exists

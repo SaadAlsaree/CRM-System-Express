@@ -7,9 +7,7 @@ export interface IOrganizationDocument extends Document {
   _id: string | ObjectId;
   name: string;
   code: string;
-  slug: string;
   description?: string;
-  employeesCount: number;
   phone?: string;
   address?: string;
   email?: string;
@@ -26,7 +24,6 @@ export interface IDepartmentDocument extends Document {
   _id: string | ObjectId;
   name?: string;
   code?: string;
-  slug?: string;
   email?: string;
   phone?: string;
   description?: string;

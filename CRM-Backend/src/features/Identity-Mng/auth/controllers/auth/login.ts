@@ -47,14 +47,15 @@ export class Login {
       uId: existingUser.uId,
       userLogin: existingUser.userLogin,
       username: existingUser.username,
-      roles: roles.map(role => role?.roleName),
+      isActivated: existingUser.isActivated,
+      role: roles.map(role => role?.roleName),
       avatarColor: existingUser.avatarColor,
 
     }, config.JWT_TOKEN!, { expiresIn: config.JWT_EXPIRE });
 
     req.session = { jwt: userJwt };
 
-    return res.status(HTTP_STATUS.OK).json({ message: 'Login successful' });
+    return res.status(HTTP_STATUS.OK).json({ message: 'Login successful', isActivated: existingUser.isActivated });
 
   }
 }

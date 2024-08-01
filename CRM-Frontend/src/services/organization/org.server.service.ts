@@ -57,6 +57,28 @@ class OrgService {
             return null;
         }
     }
+
+    public async getUserCountInOrganization(id: string): Promise<any> {
+        try {
+            const response = await axios.get(`/organizations/user-count/${id}`, {
+                withCredentials: true
+            })
+            return response.data?.Total;
+        } catch (error) {
+            return null;
+        }
+    }
+
+    public async getUserCountInDepartment(id: string): Promise<any> {
+        try {
+            const response = await axios.get(`/departments/user-count/${id}`, {
+                withCredentials: true
+            })
+            return response.data?.Total;
+        } catch (error) {
+            return null;
+        }
+    }
 }
 
 export const orgService: OrgService = new OrgService();

@@ -3,8 +3,9 @@ import React from 'react';
 
 type Props = {
    orgInfo?: any;
+   userCount?: number;
 };
-const OrganizationView = ({ orgInfo }: Props) => {
+const OrganizationView = ({ orgInfo, userCount }: Props) => {
    let type;
    if (orgInfo?.type === 'A') {
       type = (
@@ -49,7 +50,7 @@ const OrganizationView = ({ orgInfo }: Props) => {
 
                <div className='grid grid-cols-1 gap-1 p-3 even:bg-gray-50 sm:grid-cols-3 sm:gap-4 dark:bg-gray-900'>
                   <dt className='font-medium '>عدد الموضفين :</dt>
-                  <dd className=' sm:col-span-2'>{orgInfo?.employeesCount}</dd>
+                  <dd className=' sm:col-span-2'>{userCount}</dd>
                </div>
                <div className='grid grid-cols-1 gap-1 p-3 even:bg-gray-50 sm:grid-cols-3 sm:gap-4 '>
                   <dt className='font-medium '>البريد الألكتروني :</dt>

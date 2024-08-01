@@ -24,6 +24,8 @@ class OrganizationRoutes {
     this.router.put('/organizations/:id', authMiddleware.checkAuthentication, Update.prototype.Put);
     // delete organization route
     this.router.delete('/organizations/:id', authMiddleware.checkAuthentication, Delete.prototype.organization);
+    // get user count of organization route
+    this.router.get('/organizations/user-count/:organizationId', authMiddleware.checkAuthentication, Get.prototype.Count);
 
 
 

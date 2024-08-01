@@ -15,8 +15,10 @@ interface Props {
 }
 const OrganizationDetailsPage = async ({ params }: Props) => {
    let data;
+   let userCount: number = 0;
    try {
       data = await orgService.getOrgById(params.id);
+      userCount = await orgService.getUserCountInOrganization(params.id);
    } catch (error) {
       console.error('Failed to fetch organization data:', error);
       // Handle the error or set data to an appropriate default value
@@ -33,7 +35,7 @@ const OrganizationDetailsPage = async ({ params }: Props) => {
                <Card>
                   <h1 className='text-2xl font-bold text-primary'>تفاصيل الدائرة أو المديرية .</h1>
                   <Divider title='' />
-                  <OrganizationView orgInfo={orgInfo} />
+                  <OrganizationView orgInfo={orgInfo} userCount={userCount} />
                </Card>
                <Card>
                   <div className='flex justify-between'>

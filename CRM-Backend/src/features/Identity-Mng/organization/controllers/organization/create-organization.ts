@@ -9,12 +9,12 @@ import { organizationService } from '@service/db/organization.service';
 export class Create {
   @joiValidation(newOrganizationSchema)
   public async post(req: Request, res: Response): Promise<void> {
-    const { name, code, slug, description, avatar, type, phone, address, email, website } = req.body;
+    const { name, code, description, avatar, type, phone, address, email, website } = req.body;
 
     const createOrganization: IOrganizationDocument = {
       name,
       code,
-      slug,
+
       type,
       phone,
       address,

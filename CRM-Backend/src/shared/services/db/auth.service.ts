@@ -86,6 +86,31 @@ class AuthService {
     const user: IAuthDocument = (await AuthModel.findOne({ passwordResetToken: token, passwordResetExpires: { $gt: Date.now() } })) as IAuthDocument;
     return user;
   }
+
+  // get user by id
+  public async getAuthById(userId: string): Promise<IAuthDocument> {
+    const user: IAuthDocument = await AuthModel.findById(userId) as IAuthDocument;
+    return user;
+  }
+
+  // update user
+  public async updateBasicAuth(authId: string, user: IAuthDocument): Promise<void> {
+    console.log(authId);
+    await AuthModel.findByIdAndUpdate({ _id: authId },
+      { $set: { userLogin: user.userLogin, avatarColor: user.avatarColor, username: user.username, role: user.role, rank: user.rank, organizationId: user.organizationId, departmentId: user.departmentId } })
+      .exec();
+  }
+
+  // update user is active
+  public async updateIsActive(authId: string, isActivated: boolean): Promise<void> {
+    await AuthModel.findByIdAndUpdate({ _id: authId }, { $set: { isActivated } }).exec();
+  }
+
+  // update user is deleted
+  public async updateIsDeleted(authId: string, isDeleted: boolean): Promise<void> {
+    await AuthModel.findByIdAndUpdate({ _id: authId }, { $set: { isDeleted } }).exec();
+  }
+
 }
 
 

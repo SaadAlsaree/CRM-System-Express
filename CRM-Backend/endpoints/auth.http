@@ -14,10 +14,10 @@ withCredentials: true
     "password": "123456",
     "avatarColor": "red",
     "username": "saad alsaree",
-    "role": ["6697dc1860872864c6f78521"],
-    "rank": "6697dc7d85d92fa2fee7fade",
-    "organizationId": "66a3ca26a3169dbd1eb21dc4",
-    "departmentId": "66a3cb4da3169dbd1eb21dda"
+    "role": ["669d1188822b71b483422cf6","669d117d822b71b483422cf5"],
+    "rank": "669d11a50d40ec137a037c3f",
+    "organizationId": "66a678811ca86ecf5b5204ea",
+    "departmentId": "66a679551ca86ecf5b5204f6"
 }
 
 

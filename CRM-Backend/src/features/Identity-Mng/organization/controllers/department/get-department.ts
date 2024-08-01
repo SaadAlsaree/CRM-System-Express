@@ -20,4 +20,11 @@ export class Get {
 
     res.status(HTTP_STATUS.OK).json({ message: 'Department', department });
   }
+
+  public async Count(req: Request, res: Response): Promise<void> {
+    const { departmentId } = req.params;
+    const count = await organizationService.getUserCountInDepartment(departmentId);
+
+    res.status(HTTP_STATUS.OK).json({ message: 'Department count', Total: count });
+  }
 }

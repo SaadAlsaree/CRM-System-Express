@@ -14,5 +14,5 @@ export const registerSchema: ObjectSchema = Joi.object({
   role: Joi.array().items(Joi.string()).required(),
   rank: Joi.string().required(),
   organizationId: Joi.string().required(),
-  departmentId: Joi.string().required(),
+  departmentId: Joi.string().optional(),
 });

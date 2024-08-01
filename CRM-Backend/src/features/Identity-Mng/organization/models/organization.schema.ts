@@ -5,13 +5,11 @@ const organizationSchema = new Schema(
   {
     name: { type: String, required: true, unique: true },
     code: { type: String, required: true, unique: true },
-    slug: { type: String },
     type: { type: String, enum: ['A', 'B', 'Other'], required: true },
     phone: { type: String, required: false },
     address: { type: String, required: false },
     email: { type: String, required: false },
     website: { type: String, required: false },
-    employeesCount: { type: Number, required: false },
     description: { type: String, required: false, },
     avatar: { type: String, required: false },
   },

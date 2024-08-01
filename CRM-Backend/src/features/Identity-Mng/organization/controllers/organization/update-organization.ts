@@ -9,12 +9,11 @@ export class Update {
   @joiValidation(newOrganizationSchema)
   public async Put(req: Request, res: Response): Promise<void> {
     const { id } = req.params;
-    const { name, code, slug, description, avatar, type, phone, address, email, website } = req.body;
+    const { name, code, description, avatar, type, phone, address, email, website } = req.body;
 
     const updateOrganization: IOrganizationDocument = {
       name,
       code,
-      slug,
       description,
       type,
       phone,

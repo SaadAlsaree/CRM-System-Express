@@ -26,6 +26,8 @@ class DepartmentRoutes {
     this.router.put('/departments/:id', Update.prototype.department);
     // delete department route
     this.router.delete('/departments/:id', Delete.prototype.department);
+    // get user count of department route
+    this.router.get('/departments/user-count/:departmentId', Get.prototype.Count);
 
 
     return this.router;

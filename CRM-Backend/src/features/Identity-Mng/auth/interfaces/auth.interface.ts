@@ -15,6 +15,7 @@ export interface AuthPayload {
   userId: string;
   uId: string;
   userLogin: string;
+  isActivated: boolean;
   role: string[];
   avatarColor: string;
   username: string;

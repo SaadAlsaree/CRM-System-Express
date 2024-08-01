@@ -47,10 +47,6 @@ const notificationSettingsSchema: ObjectSchema = Joi.object().keys({
 });
 
 const userInfoSchema: ObjectSchema = Joi.object().keys({
-  username: Joi.string().required().messages({
-    'string.base': 'Username should be a type of string',
-    'string.empty': 'Username is a required field'
-  }),
   email: Joi.string().email().required().messages({
     'string.base': 'Email should be a type of string',
     'string.empty': 'Email is a required field',
@@ -67,4 +63,14 @@ const userInfoSchema: ObjectSchema = Joi.object().keys({
   work: Joi.string().optional()
 });
 
-export { changePasswordSchema, notificationSettingsSchema, userInfoSchema };
+const userBasicSchema: ObjectSchema = Joi.object().keys({
+  userLogin: Joi.string().min(4).max(15).required(),
+  username: Joi.string().required(),
+  avatarColor: Joi.string().required(),
+  role: Joi.array().items(Joi.string()).required(),
+  rank: Joi.string().required(),
+  organizationId: Joi.string().required(),
+  departmentId: Joi.string().required(),
+});
+
+export { changePasswordSchema, notificationSettingsSchema, userInfoSchema, userBasicSchema };

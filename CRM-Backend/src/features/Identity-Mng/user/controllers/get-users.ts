@@ -1,8 +1,10 @@
+import { Request, Response } from 'express';
+import HTTP_STATUS from 'http-status-codes';
+
 import { IAuthDocument } from '@auth/interfaces/auth.interface';
 import { userServices } from '@service/db/user.service';
 import { IUserDocument } from '@user/interfaces/user.interface';
-import { Request, Response } from 'express';
-import HTTP_STATUS from 'http-status-codes';
+
 
 
 const PAGE_SIZE = 12;
@@ -10,6 +12,8 @@ const PAGE_SIZE = 12;
 
 export class Get {
   public async all(req: Request, res: Response): Promise<void> {
+
+    console.log(req.currentUser?.role);
     const { page } = req.params;
     const skip: number = (parseInt(page) - 1) * PAGE_SIZE;
     const limit: number = PAGE_SIZE * parseInt(page);
@@ -31,8 +35,8 @@ export class Get {
 
   // get users by organization
   public async byOrganization(req: Request, res: Response): Promise<void> {
-    const { organizationId } = req.params;
-    const { page } = req.params;
+    const { organizationId, page } = req.params;
+
     const skip: number = (parseInt(page) - 1) * PAGE_SIZE;
     const limit: number = PAGE_SIZE * parseInt(page);
     const newSkip: number = skip === 0 ? skip : skip + 1;
@@ -55,6 +59,12 @@ export class Get {
     const totalUsers: number = await userServices.getTotalUsersByDepartment(departmentId);
 
     res.status(HTTP_STATUS.OK).json({ message: 'Users by department', Users: users, totalUsers: totalUsers });
+  }
+
+  public async profile(req: Request, res: Response): Promise<void> {
+    const { authId } = req.params;
+    const user: IUserDocument = await userServices.getUserProfile(authId);
+    res.status(HTTP_STATUS.OK).json({ message: 'User profile', user });
   }
 
 }

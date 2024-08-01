@@ -5,10 +5,8 @@ const departmentSchema = new Schema(
   {
     name: { type: String, required: true, unique: true },
     code: { type: String, required: true, unique: true },
-    slug: { type: String },
     email: { type: String, required: false },
     phone: { type: String, required: false },
-    employeesCount: { type: Number, default: 0 },
     description: { type: String, required: false, },
     organization: { type: mongoose.Types.ObjectId, required: true }
   },

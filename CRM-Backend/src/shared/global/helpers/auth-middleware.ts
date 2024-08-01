@@ -28,6 +28,32 @@ export class AuthMiddleware {
     }
     next();
   }
+
+  public checkAuthorization(roles: string[]) {
+    return (req: Request, res: Response, next: NextFunction): void => {
+      if (!req.currentUser || !req.currentUser.role.some(userRole => roles.includes(userRole))) {
+        throw new NotAuthorizedError('You are not authorized to access this route.');
+      }
+      next();
+    };
+  }
+
+  public checkRole(role: string) {
+    return (req: Request, res: Response, next: NextFunction): void => {
+      if (!req.currentUser || !req.currentUser.role.includes(role)) {
+        throw new NotAuthorizedError('You are not authorized to access this route.');
+      }
+      next();
+    };
+  }
+
+  public checkActivated(req: Request, res: Response, next: NextFunction): void {
+
+    if (!req.currentUser?.isActivated) {
+      throw new NotAuthorizedError('Your account is not activated. Please contact your administrator.');
+    }
+    next();
+  }
 }
 
 export const authMiddleware: AuthMiddleware = new AuthMiddleware();

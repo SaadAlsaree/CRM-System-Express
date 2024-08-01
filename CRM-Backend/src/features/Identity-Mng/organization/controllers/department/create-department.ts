@@ -8,14 +8,13 @@ import { IDepartmentDocument } from '@organization/interfaces/organization.inter
 export class Create {
   public async department(req: Request, res: Response): Promise<void> {
 
-    const { name, code, slug, description, organization, email, phone } = req.body;
+    const { name, code, description, organization, email, phone } = req.body;
 
     const departmentCreate: IDepartmentDocument = {
       name,
       code,
       email,
       phone,
-      slug,
       description,
       organization
     } as IDepartmentDocument;

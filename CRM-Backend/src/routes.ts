@@ -7,6 +7,7 @@ import { rankRoutes } from '@auth/routes/rank.routes';
 import { authRoutes } from '@auth/routes/auth.routes';
 import { authMiddleware } from '@globals/helpers/auth-middleware';
 import { currentUserRoutes } from '@auth/routes/current.routes';
+import { userRoutes } from '@user/routes/user.routes';
 
 const BASE_PATH = '/api/v1';
 
@@ -17,14 +18,16 @@ export default (app: Application) => {
     //Auth
     app.use(BASE_PATH, authRoutes.routes());
     // role
-    app.use(BASE_PATH, authMiddleware.verifyUser, roleRoutes.routes());
+    app.use(BASE_PATH, authMiddleware.verifyUser, authMiddleware.checkActivated, roleRoutes.routes());
     //rank
-    app.use(BASE_PATH, authMiddleware.verifyUser, rankRoutes.routes());
+    app.use(BASE_PATH, authMiddleware.verifyUser, authMiddleware.checkActivated, rankRoutes.routes());
     //Current User
-    app.use(BASE_PATH, authMiddleware.verifyUser, currentUserRoutes.routes());
+    app.use(BASE_PATH, authMiddleware.verifyUser, authMiddleware.checkActivated, currentUserRoutes.routes());
+    // user routes
+    app.use(BASE_PATH, authMiddleware.verifyUser, authMiddleware.checkActivated, userRoutes.routes());
     // Organization routes
-    app.use(BASE_PATH, authMiddleware.verifyUser, organizationRoutes.routes());
-    app.use(BASE_PATH, authMiddleware.verifyUser, departmentRoutes.routes());
+    app.use(BASE_PATH, authMiddleware.verifyUser, authMiddleware.checkActivated, organizationRoutes.routes());
+    app.use(BASE_PATH, authMiddleware.verifyUser, authMiddleware.checkActivated, departmentRoutes.routes());
 
   };
   routes();

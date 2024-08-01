@@ -40,6 +40,15 @@ const LoginPage = () => {
          });
 
          if (response.status === 200) {
+            if (response.data.isActivated === false) {
+               toast({
+                  title: 'حدث خطأ',
+                  description: 'الرجاء تفعيل حسابك',
+                  duration: 5000
+               });
+               setSubmitting(false);
+               return;
+            }
             router.push('/');
             router.refresh();
 

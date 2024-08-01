@@ -1,0 +1,101 @@
+@baseUrl = http://localhost:5000
+@urlPath = api/v1
+
+
+###
+GET {{baseUrl}}/{{urlPath}}/users/all/1
+Content-Type: application/json
+Accept: application/json
+withCredentials: true
+
+###
+GET {{baseUrl}}/{{urlPath}}/users/66ab7d673fb2e803f97058ff
+Content-Type: application/json
+Accept: application/json
+withCredentials: true
+
+// Get User Profile
+###
+GET {{baseUrl}}/{{urlPath}}/users/profile/66ab7d673fb2e803f97058ff
+Content-Type: application/json
+Accept: application/json
+withCredentials: true
+
+###
+GET {{baseUrl}}/{{urlPath}}/users/organization/66a679011ca86ecf5b5204ef/1
+Content-Type: application/json
+Accept: application/json
+withCredentials: true
+
+###
+GET {{baseUrl}}/{{urlPath}}/users/department/66a679551ca86ecf5b5204f6/1
+Content-Type: application/json
+Accept: application/json
+withCredentials: true
+
+###
+GET {{baseUrl}}/{{urlPath}}/users/search/alsaree
+Content-Type: application/json
+Accept: application/json
+withCredentials: true
+
+// update basic info AuthId
+###
+###
+PUT  {{baseUrl}}/{{urlPath}}/users/update/basic/66ab7d67d1052a9ddae58a0a
+Content-Type: application/json
+Accept: application/json
+withCredentials: true
+
+{
+    "userLogin": "saadsasa",
+    "avatarColor": "blue",
+    "username": "saad alsaree",
+    "role": ["669d1188822b71b483422cf6","669d117d822b71b483422cf5"],
+    "rank": "669d11a50d40ec137a037c3f",
+    "organizationId": "66a679011ca86ecf5b5204ef",
+    "departmentId": "66ab994d8b445b1f2e126ade"
+}
+
+
+// update sttings userId
+###
+PUT  {{baseUrl}}/{{urlPath}}/users/update/settings/66ab7d673fb2e803f97058ff
+Content-Type: application/json
+Accept: application/json
+withCredentials: true
+
+{
+    "cases": false,
+    "tasks": true,
+    "messages": true,
+    "comments": true,
+    "follows": true,
+    "tickets": true
+}
+
+// update avatar userId
+###
+PUT  {{baseUrl}}/{{urlPath}}/users/update/avatar/66ab7d673fb2e803f97058ff
+Content-Type: application/json
+Accept: application/json
+withCredentials: true
+
+{
+    "avatar": "https://www.w3schools.com/howto/img_avatar.png"
+}
+
+// update user is active authId
+###
+PUT  {{baseUrl}}/{{urlPath}}/users/update/active/66abb87d2217037daf968975
+Content-Type: application/json
+Accept: application/json
+withCredentials: true
+
+{
+    "isActivated": true
+}
+
+
+
+

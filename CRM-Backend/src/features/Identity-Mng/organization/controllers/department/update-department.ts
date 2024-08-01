@@ -8,12 +8,12 @@ import { IDepartmentDocument } from '@organization/interfaces/organization.inter
 export class Update {
   public async department(req: Request, res: Response): Promise<void> {
     const { id } = req.params;
-    const { name, code, slug, description, organization } = req.body;
+    const { name, code, description, organization } = req.body;
 
     const departmentUpdate: IDepartmentDocument = {
       name,
       code,
-      slug,
+
       description,
       organization
     } as IDepartmentDocument;

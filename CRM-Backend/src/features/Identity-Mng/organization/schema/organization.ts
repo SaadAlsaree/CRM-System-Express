@@ -11,7 +11,6 @@ const newOrganizationSchema: ObjectSchema = Joi.object().keys({
   }),
   code: Joi.string().required(),
   type: Joi.string().valid('A', 'B', 'Other').required(),
-  // slug: Joi.string().optional(),
   phone: Joi.string().optional(),
   address: Joi.string().optional(),
   email: Joi.string().email().optional(),
@@ -25,7 +24,6 @@ const newOrganizationSchema: ObjectSchema = Joi.object().keys({
 
 const newDepartmentSchema: ObjectSchema = Joi.object().keys({
   name: Joi.string().required(),
-  // slug: Joi.string().optional(),
   code: Joi.string().required(),
   email: Joi.string().email().optional(),
   phone: Joi.string().optional(),

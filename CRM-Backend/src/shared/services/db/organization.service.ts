@@ -1,3 +1,4 @@
+import { AuthModel } from '@auth/models/auth.schema';
 import { IDepartmentDocument, IOrganizationDocument } from '@organization/interfaces/organization.interface';
 import { DepartmentModel } from '@organization/models/department.schema';
 import { OrganizationModel } from '@organization/models/organization.schema';
@@ -119,6 +120,20 @@ class OrganizationService {
   // remove user from department
   public async removeUserFromDepartment(id: string): Promise<void> {
     await DepartmentModel.findByIdAndUpdate(id, { $inc: { employeesCount: -1 } }).exec();
+  }
+
+  // get userCount in organization
+  public async getUserCountInOrganization(organizationId: string): Promise<number> {
+    const count: number = await AuthModel.countDocuments({ organizationId: organizationId }).exec();
+
+    return count;
+  }
+
+  // get userCount in department
+  public async getUserCountInDepartment(departmentId: string): Promise<number> {
+    const count: number = await AuthModel.countDocuments({ departmentId: departmentId }).exec();
+
+    return count;
   }
 
 

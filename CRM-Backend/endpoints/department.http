@@ -17,11 +17,11 @@ withCredentials: true
     "phone": "3553534534",
     "avatar": "https://www.google.com",
     "description": "This is organization 4",
-    "organization": "6697deec85d92fa2fee7faf9"
+    "organization": "66a679011ca86ecf5b5204ef"
 }
 
 ###
-GET {{baseUrl}}/{{urlPath}}/departments/6697deec85d92fa2fee7faf9
+GET {{baseUrl}}/{{urlPath}}/departments/66a678811ca86ecf5b5204ea
 Content-Type: application/json
 Accept: application/json
 withCredentials: true
@@ -53,3 +53,10 @@ DELETE {{baseUrl}}/{{urlPath}}/departments/666ddb95d691500bc70e865c
 Content-Type: application/json
 Accept: application/json
 withCredentials: true
+
+###
+GET {{baseUrl}}/{{urlPath}}/departments/user-count/66a679551ca86ecf5b5204f6
+Content-Type: application/json
+Accept: application/json
+withCredentials: true
+

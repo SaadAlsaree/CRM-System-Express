@@ -36,7 +36,7 @@ export interface INotificationSettings {
   follows: boolean;
   tickets: boolean;
   tasks: boolean;
-  projects: boolean;
+  cases: boolean;
 }
 
 export interface IResetPasswordParams {
@@ -48,7 +48,6 @@ export interface IResetPasswordParams {
 
 
 export interface IUserInfo {
-  username: string;
   email: string;
   phone: string;
   address: string;
