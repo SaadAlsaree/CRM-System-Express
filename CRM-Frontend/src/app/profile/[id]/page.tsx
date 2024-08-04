@@ -1,15 +1,19 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-
 import ProtectedPage from '@/components/ProtectedPage';
-import ProfileHeader from './_components/Header';
-import GeneralInfo from './_components/GeneralInfo';
-import JobInfo from './_components/JobInfo';
-import AccountSettings from './_components/AccountSettings';
-// services
-import { userServerService } from '@/services/user/user.server.service';
 
-const ProfilePage = async () => {
-   const currentUser = await userServerService.getCurrentUser();
+// Services
+import { userServerService } from '@/services/user/user.server.service';
+// Profile components
+import ProfileHeader from '../_components/Header';
+import GeneralInfo from '../_components/GeneralInfo';
+import JobInfo from '../_components/JobInfo';
+import AccountSettings from '../_components/AccountSettings';
+
+type Props = {
+   params: { id: string };
+};
+const PRofileWithIdPage = async ({ params }: Props) => {
+   const profile = await userServerService.getUserProfile(params.id);
 
    return (
       <ProtectedPage>
@@ -20,24 +24,23 @@ const ProfilePage = async () => {
                   <TabsList className='w-full'>
                      <TabsTrigger value='GeneralInfo'>معلومات عامة</TabsTrigger>
                      <TabsTrigger value='JobInfo'>معلومات الوظيفة</TabsTrigger>
-                     <TabsTrigger value='Settings'>إعدادت الحساب</TabsTrigger>
-                     <TabsTrigger value='Projects'>المشاريع</TabsTrigger>
+                     <TabsTrigger value='cases'>المشاريع</TabsTrigger>
                      <TabsTrigger value='Tasks'>المهام</TabsTrigger>
                      <TabsTrigger value='Tickets'>التذاكر</TabsTrigger>
-                     <TabsTrigger value='MyLeave'>إجازتي</TabsTrigger>
-                     <TabsTrigger value='Files'>ملفاتي</TabsTrigger>
+                     <TabsTrigger value='MyLeave'>الأجازات</TabsTrigger>
 
                      {/* <TabsTrigger value='JobInfo'></TabsTrigger> */}
                   </TabsList>
                   <TabsContent value='GeneralInfo'>
-                     <GeneralInfo userInfo={currentUser?.data?.UserProfile} isCurrentUser={true} />
+                     <GeneralInfo userInfo={profile?.data?.user} isCurrentUser={false} />
                   </TabsContent>
                   <TabsContent value='JobInfo'>
-                     <JobInfo jobInfo={currentUser?.data?.UserProfile} />
+                     <JobInfo jobInfo={profile?.data?.user} />
                   </TabsContent>
-                  <TabsContent value='Settings'>
-                     <AccountSettings userStings={currentUser?.data?.UserProfile} />
-                  </TabsContent>
+                  <TabsContent value='cases'>Cases</TabsContent>
+                  <TabsContent value='Tasks'>Tasks</TabsContent>
+                  <TabsContent value='Tickets'>Tickets</TabsContent>
+                  <TabsContent value='MyLeave'>MyLeave</TabsContent>
                </Tabs>
             </div>
          </div>
@@ -45,4 +48,4 @@ const ProfilePage = async () => {
    );
 };
 
-export default ProfilePage;
+export default PRofileWithIdPage;

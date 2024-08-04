@@ -23,7 +23,7 @@ const OrganizationTable = ({ searchParams, columns, OrgData }: Props) => {
          </TableHeader>
          <TableBody>
             {OrgData &&
-               OrgData.data?.organizations.map((org: any) => (
+               OrgData?.organizations.map((org: any) => (
                   <TableRow key={org._id}>
                      <TableCell>
                         <span className='text-primary hover:underline hover:font-medium duration-100 transition-all'>

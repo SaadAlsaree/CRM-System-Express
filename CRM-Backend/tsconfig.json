@@ -32,7 +32,7 @@
         "@comment/*":["src/features/comments/*"],
         "@notification/*":["src/features/notification/*"],
         "@department/*":["src/features/Identity-Mng/department/*"],
-        "@chat/*":["src/features/chat/*"],
+        "@chat/*":["src/features/Identity-Mng/chat/*"],
         "@globals/*": ["src/shared/global/*"],
         "@service/*": ["src/shared/services/*"],
         "@socket/*": ["src/shared/sockets/*"],

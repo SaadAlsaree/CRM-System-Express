@@ -20,8 +20,8 @@ class UserServices {
   }
   // update user info
   public async updateUserInfo(userId: string, user: IUserInfo): Promise<void> {
-    const updateUser: UpdateQuery<IUserDocument> = UserModel.updateOne({ _id: userId },
-      { $set: { email: user.email, phone: user.phone, address: user.address, work: user.work } }).exec();
+    const updateUser: UpdateQuery<IUserDocument> = UserModel.findByIdAndUpdate({ _id: userId },
+      { $set: { displayName: user.displayName, email: user.email, phone: user.phone, address: user.address, work: user.work } }).exec();
 
     await Promise.all([updateUser]);
   }
@@ -52,6 +52,10 @@ class UserServices {
     const users: IUserDocument[] = await UserModel.aggregate([
       // { $match: userQuery },
       { $lookup: { from: 'Auth', localField: 'authId', foreignField: '_id', as: 'authId' } },
+      { $lookup: { from: 'Organization', localField: 'authId.organizationId', foreignField: '_id', as: 'organization' } },
+      { $unwind: '$organization' },
+      { $lookup: { from: 'Department', localField: 'authId.departmentId', foreignField: '_id', as: 'department' } },
+      { $unwind: '$department' },
       { $unwind: '$authId' },
       { $sort: { createdAt: -1 } },
       { $skip: skip },
@@ -122,8 +126,17 @@ class UserServices {
   public async getUserProfile(authId: string): Promise<IUserDocument> {
     const user: IUserDocument[] = await AuthModel.aggregate([
       { $match: { _id: new mongoose.Types.ObjectId(authId) } },
+      { $lookup: { from: 'User', localField: '_id', foreignField: 'authId', as: 'user' } },
+      { $unwind: '$user' },
+      { $lookup: { from: 'Organization', localField: 'organizationId', foreignField: '_id', as: 'organization' } },
+      { $unwind: '$organization' },
+      { $lookup: { from: 'Department', localField: 'departmentId', foreignField: '_id', as: 'department' } },
+      { $unwind: '$department' },
+      { $lookup: { from: 'Rank', localField: 'rank', foreignField: '_id', as: 'rank' } },
+      { $unwind: '$rank' },
+      { $lookup: { from: 'Role', localField: 'role', foreignField: '_id', as: 'role' } },
 
-      { $project: this.aggregateProject() }
+      { $project: this.aggregateProjectUser() }
     ]).exec();
 
     return user[0];
@@ -167,6 +180,12 @@ class UserServices {
     return totalUsers;
   }
 
+  // check if current user
+  public async isCurrentUser(authId: string, userId: string): Promise<boolean> {
+    const user: IUserDocument = await UserModel.findOne({ authId, _id: userId }).exec() as IUserDocument;
+    return !!user;
+  }
+
 
 
   private aggregateProject() {
@@ -174,6 +193,41 @@ class UserServices {
 
       'authId.password': 0,
       password: 0,
+      passwordResetToken: 0,
+      organizationId: 0,
+      departmentId: 0,
+
+    };
+  }
+
+  private aggregateProjectUser() {
+    return {
+      _id: 1,
+      userLogin: 1,
+      uId: 1,
+      'role.roleName': 1,
+      'rank.rankName': 1,
+      'department.name': 1,
+      'organization.name': 1,
+      isActivated: 1,
+      isDeleted: 1,
+      avatarColor: 1,
+      username: 1,
+      createdAt: 1,
+      updatedAt: 1,
+      'user.email': 1,
+      'user.phone': 1,
+      'user.ticketCount': 1,
+      'user.taskCount': 1,
+      'user.casesCount': 1,
+      'user.blocked': 1,
+      'user.followersCount': 1,
+      'user.followingCount': 1,
+      'user.notifications': 1,
+      'user.leave': 1,
+      'user.address': 1,
+      'user.displayName': 1,
+      'user.work': 1,
     };
   }
 

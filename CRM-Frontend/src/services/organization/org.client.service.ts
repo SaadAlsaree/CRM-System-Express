@@ -47,6 +47,18 @@ class OrgClientService {
             return null;
         }
     }
+
+    //get all departments in an organization
+    public async getDepartmentsInOrg(id: string): Promise<any> {
+        try {
+            const response = await axios.get(`/departments/${id}`, {
+                withCredentials: true
+            })
+            return response.data;
+        } catch (error) {
+            return null;
+        }
+    }
 }
 
 export const orgClientService: OrgClientService = new OrgClientService();

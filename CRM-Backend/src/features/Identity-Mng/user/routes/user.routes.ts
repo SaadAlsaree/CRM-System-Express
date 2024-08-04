@@ -22,10 +22,10 @@ class UserRoutes {
     this.router.get('/users/search/:query', Search.prototype.user);
     this.router.get('/users/profile/:authId', Get.prototype.profile);
 
-    // Update user basic info
+    // Update auth basic info
     this.router.put('/users/update/basic/:authId', UpdateBasic.prototype.Put);
     // Update user is active
-    this.router.put('/users/update/active/:authId', authMiddleware.checkRole('User'), UpdateBasic.prototype.isActive);
+    this.router.put('/users/update/active/:authId', authMiddleware.checkRole('SuAdmin'), UpdateBasic.prototype.isActive);
     // Update user is deleted
     this.router.put('/users/update/delete/:authId', UpdateBasic.prototype.isDeleted);
 

@@ -10,8 +10,8 @@ Accept: application/json
 withCredentials: true
 
 {
-    "roleName": "SuAdmin",
-    "roleCode": "100"
+    "roleName": "Employee",
+    "roleCode": "310"
 }
 
 ###

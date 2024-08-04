@@ -7,7 +7,7 @@ import { IUserDocument } from '@user/interfaces/user.interface';
 
 const userSchema: Schema = new Schema({
   authId: { type: Schema.Types.ObjectId, ref: 'Auth', required: true },
-  username: { type: String },
+  displayName: { type: String },
   userLogin: { type: String, required: true },
   uId: { type: String },
   email: { type: String },

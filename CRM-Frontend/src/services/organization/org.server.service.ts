@@ -18,7 +18,7 @@ class OrgService {
             const response = await axios.get('/organizations', {
                 withCredentials: true
             })
-            return response;
+            return response.data;
         } catch (error) {
             return null;
         }

@@ -13,7 +13,6 @@ const PAGE_SIZE = 12;
 export class Get {
   public async all(req: Request, res: Response): Promise<void> {
 
-    console.log(req.currentUser?.role);
     const { page } = req.params;
     const skip: number = (parseInt(page) - 1) * PAGE_SIZE;
     const limit: number = PAGE_SIZE * parseInt(page);

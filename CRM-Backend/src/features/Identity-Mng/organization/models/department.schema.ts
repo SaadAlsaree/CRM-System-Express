@@ -3,8 +3,8 @@ import { IDepartmentDocument } from '@organization/interfaces/organization.inter
 
 const departmentSchema = new Schema(
   {
-    name: { type: String, required: true, unique: true },
-    code: { type: String, required: true, unique: true },
+    name: { type: String, required: true },
+    code: { type: String, required: true },
     email: { type: String, required: false },
     phone: { type: String, required: false },
     description: { type: String, required: false, },

@@ -42,31 +42,49 @@ withCredentials: true
 // update basic info AuthId
 ###
 ###
-PUT  {{baseUrl}}/{{urlPath}}/users/update/basic/66ab7d67d1052a9ddae58a0a
+PUT  {{baseUrl}}/{{urlPath}}/users/update/basic/66a7ae3fa0fb542ee360e5e4
 Content-Type: application/json
 Accept: application/json
 withCredentials: true
 
 {
-    "userLogin": "saadsasa",
-    "avatarColor": "blue",
+    "userLogin": "saad",
+    "password": "123456",
+    "avatarColor": "red",
     "username": "saad alsaree",
-    "role": ["669d1188822b71b483422cf6","669d117d822b71b483422cf5"],
-    "rank": "669d11a50d40ec137a037c3f",
-    "organizationId": "66a679011ca86ecf5b5204ef",
-    "departmentId": "66ab994d8b445b1f2e126ade"
+    "role": ["66ad2e229dc1d4c6003fbdef",],
+    "rank": "66ad2d5b7798f4db1a913aa8",
+    "organizationId": "66a678811ca86ecf5b5204ea",
+    "departmentId": "66a679551ca86ecf5b5204f6"
 }
+
+// update user info
+###
+PUT  {{baseUrl}}/{{urlPath}}/users/update/info/66ad47344473998018762eef
+Content-Type: application/json
+Accept: application/json
+withCredentials: true
+
+{
+    "email": "test13@m14.com",
+    "phone": "56654564554",
+    "address": "baghdad",
+    "work": "developer",
+    "displayName": "T.a"
+
+}
+
 
 
 // update sttings userId
 ###
-PUT  {{baseUrl}}/{{urlPath}}/users/update/settings/66ab7d673fb2e803f97058ff
+PUT  {{baseUrl}}/{{urlPath}}/users/update/settings/66a7ae3fa0fb542ee360e5e4
 Content-Type: application/json
 Accept: application/json
 withCredentials: true
 
 {
-    "cases": false,
+    "cases": true,
     "tasks": true,
     "messages": true,
     "comments": true,
@@ -76,7 +94,7 @@ withCredentials: true
 
 // update avatar userId
 ###
-PUT  {{baseUrl}}/{{urlPath}}/users/update/avatar/66ab7d673fb2e803f97058ff
+PUT  {{baseUrl}}/{{urlPath}}/users/update/avatar/66a7ae3fa0fb542ee360e5e4
 Content-Type: application/json
 Accept: application/json
 withCredentials: true
@@ -87,7 +105,7 @@ withCredentials: true
 
 // update user is active authId
 ###
-PUT  {{baseUrl}}/{{urlPath}}/users/update/active/66abb87d2217037daf968975
+PUT  {{baseUrl}}/{{urlPath}}/users/update/active/66a7ae3f012b3971653cf5fa
 Content-Type: application/json
 Accept: application/json
 withCredentials: true

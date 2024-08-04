@@ -14,8 +14,8 @@ withCredentials: true
     "password": "123456",
     "avatarColor": "red",
     "username": "saad alsaree",
-    "role": ["669d1188822b71b483422cf6","669d117d822b71b483422cf5"],
-    "rank": "669d11a50d40ec137a037c3f",
+    "role": ["66ad2e229dc1d4c6003fbdef",],
+    "rank": "66ad2d5b7798f4db1a913aa8",
     "organizationId": "66a678811ca86ecf5b5204ea",
     "departmentId": "66a679551ca86ecf5b5204f6"
 }
@@ -35,7 +35,7 @@ Accept: application/json
 withCredentials: true
 
 {
-    "userLogin": "saad",
+    "userLogin": "101313",
     "password": "123456"
 }
 

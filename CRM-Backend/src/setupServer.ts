@@ -17,6 +17,8 @@ import apiStats from 'swagger-stats';
 import { config } from '@root/config';
 import applicationRoutes from './routes';
 import { CustomError, IErrorResponse } from '@globals/helpers/error-handler';
+import { SocketIOUserHandler } from '@socket/user';
+import { SocketIOChatHandler } from '@socket/chat';
 
 const log: Logger = config.createLogger('Server Setup');
 
@@ -140,7 +142,8 @@ export class M14Platform {
 
   // Initializes Socket.IO Connection
   private socketIOConnection(io: Server): void {
-    log.info('io connection');
+    const userSocketHandler: SocketIOUserHandler = new SocketIOUserHandler(io);
+    const chatSocketHandler: SocketIOChatHandler = new SocketIOChatHandler(io);
     // const postSocketHandler: SocketIOPostHandler = new SocketIOPostHandler(io);
     // const socketIOFollowerHandler: SocketIOFollowerHandler = new SocketIOFollowerHandler(io);
     // const socketIOUserHandler: SocketIOUserHandler = new SocketIOUserHandler(io);
@@ -149,6 +152,8 @@ export class M14Platform {
     // const socketIOImageHandler: SocketIOImageHandler = new SocketIOImageHandler();
     // const socketIOTaskHandler: SocketIOTaskHandler = new SocketIOTaskHandler();
 
+    userSocketHandler.listen();
+    chatSocketHandler.listen();
     // postSocketHandler.listen();
     // socketIOFollowerHandler.listen();
     // socketIOUserHandler.listen();

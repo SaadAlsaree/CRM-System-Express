@@ -2,14 +2,14 @@ import HTTP_STATUS from 'http-status-codes';
 import { Request, Response } from 'express';
 
 import { joiValidation } from '@globals/decorators/joi-validation.decorators';
-import { userBasicSchema } from '@user/schema/user';
 import { IAuthDocument } from '@auth/interfaces/auth.interface';
 import { authService } from '@service/db/auth.service';
 import { IUserDocument } from '@user/interfaces/user.interface';
 import { userServices } from '@service/db/user.service';
+import { userInfoSchema } from '@user/schema/user';
 
 export class UpdateBasic {
-  @joiValidation(userBasicSchema)
+  @joiValidation(userInfoSchema)
   public async Put(req: Request, res: Response): Promise<void> {
     const { authId } = req.params;
     const { userLogin, password, username, avatarColor, role, rank, organizationId, departmentId } = req.body;
@@ -37,7 +37,6 @@ export class UpdateBasic {
     // user data
     const userToUpdate: IUserDocument = {
       userLogin,
-      username,
     } as IUserDocument;
 
 

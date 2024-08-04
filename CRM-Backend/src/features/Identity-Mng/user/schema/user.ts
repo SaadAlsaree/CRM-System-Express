@@ -52,6 +52,10 @@ const userInfoSchema: ObjectSchema = Joi.object().keys({
     'string.empty': 'Email is a required field',
     'string.email': 'Email must be a valid email'
   }),
+  displayName: Joi.string().required().messages({
+    'string.base': 'Username should be a type of string',
+    'string.empty': 'Username is a required field'
+  }),
   phone: Joi.string().required().messages({
     'string.base': 'Phone should be a type of string',
     'string.empty': 'Phone is a required field'

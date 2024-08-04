@@ -10,8 +10,8 @@ export class UpdateUserInfo {
   @joiValidation(userInfoSchema)
   public async Put(req: Request, res: Response): Promise<void> {
     const { userId } = req.params;
-    const { email, phone, address, work } = req.body;
-    await userServices.updateUserInfo(userId, { email, phone, address, work });
+    const { email, phone, address, work, displayName } = req.body;
+    await userServices.updateUserInfo(userId, { email, phone, address, work, displayName });
     res.status(HTTP_STATUS.OK).json({ message: 'User info updated' });
   }
 

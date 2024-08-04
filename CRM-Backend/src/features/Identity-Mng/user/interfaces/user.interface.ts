@@ -48,6 +48,7 @@ export interface IResetPasswordParams {
 
 
 export interface IUserInfo {
+  displayName: string;
   email: string;
   phone: string;
   address: string;
@@ -60,4 +61,21 @@ export interface IGetUserQuery {
   authId?: string;
   organizationId?: string;
   departmentId?: string;
+}
+
+export interface ISearchUser {
+  _id: string;
+  avatar: string;
+  username: string;
+  email: string;
+  avatarColor: string;
+}
+
+export interface ISocketData {
+  blockedUser: string;
+  blockedBy: string;
+}
+
+export interface ILogin {
+  userId: string;
 }

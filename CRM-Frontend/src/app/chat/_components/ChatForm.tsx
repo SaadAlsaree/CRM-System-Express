@@ -2,20 +2,20 @@ import React from 'react';
 import { Label } from '@radix-ui/react-label';
 
 //Components
-import { Badge } from '@/components/ui/badge';
 import { Textarea } from '@/components/ui/textarea';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import { Button } from '@/components/ui/button';
 //Icons
 import { CornerDownLeft, Mic, Paperclip } from 'lucide-react';
+import TextMessage from './TextMessage';
 
 const ChatFormPage = () => {
    return (
       <div>
          <div className='relative flex h-full min-h-[50vh] flex-col rounded-xl bg-muted/50 p-4 lg:col-span-2'>
-            <Badge variant='outline' className='absolute right-3 top-3'>
-               Output
-            </Badge>
+            <div>
+               <TextMessage />
+            </div>
             <div className='flex-1' />
             <form className='relative overflow-hidden rounded-lg border bg-background focus-within:ring-1 focus-within:ring-ring'>
                <Label htmlFor='message' className='sr-only'>
