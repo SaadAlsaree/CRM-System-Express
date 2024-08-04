@@ -10,8 +10,8 @@ Accept: application/json
 withCredentials: true
 
 {
-    "rankName": "معاون أداري",
-    "rankCode": "112"
+    "rankName": "موظف",
+    "rankCode": "668"
 }
 
 ###
@@ -40,7 +40,7 @@ withCredentials: true
 }
 
 ###
-DELETE {{baseUrl}}/{{urlPath}}/auth/rank/6697dc7d85d92fa2fee7fade
+DELETE {{baseUrl}}/{{urlPath}}/auth/rank/669d11a50d40ec137a037c3f
 Content-Type: application/json
 Accept: application/json
 withCredentials: true

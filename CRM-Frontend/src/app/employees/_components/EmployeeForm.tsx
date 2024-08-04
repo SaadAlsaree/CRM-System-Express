@@ -49,7 +49,7 @@ const EmployeeForm = ({ employee, rankList, roleList, orgList }: Props) => {
       value: role._id
    })) as Option[];
    const rankOptions: [] = rankList?.map((rank: Record<string, string>) => ({ label: rank.rankName, value: rank._id }));
-   const orgOptions: [] = orgList.organizations?.map((org: Record<string, string>) => ({ label: org.name, value: org._id }));
+   const orgOptions: [] = orgList?.organizations?.map((org: Record<string, string>) => ({ label: org.name, value: org._id }));
 
    const form = useForm<addEmployeeData>({
       resolver: zodResolver(addEmployeeSchema),
@@ -191,7 +191,7 @@ const EmployeeForm = ({ employee, rankList, roleList, orgList }: Props) => {
                            </div>
 
                            <div className='col-span-2'>
-                              {roleList.data && (
+                              {roleList?.data && (
                                  <FormField
                                     control={form.control}
                                     name='role'

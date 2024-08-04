@@ -18,7 +18,7 @@ export default (app: Application) => {
     //Auth
     app.use(BASE_PATH, authRoutes.routes());
     // role
-    app.use(BASE_PATH, authMiddleware.verifyUser, roleRoutes.routes());
+    app.use(BASE_PATH, authMiddleware.verifyUser, authMiddleware.checkActivated, roleRoutes.routes());
     //rank
     app.use(BASE_PATH, authMiddleware.verifyUser, rankRoutes.routes());
     //Current User

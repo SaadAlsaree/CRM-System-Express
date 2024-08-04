@@ -9,6 +9,7 @@ import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel } fr
 import { Switch } from '@/components/ui/switch';
 import { useToast } from '@/components/ui/use-toast';
 import { updateUserStingsSchema } from '@/schema/user.schema';
+import { CustomSwitch } from '@/components';
 
 type updateUserStingsData = z.infer<typeof updateUserStingsSchema>;
 
@@ -52,25 +53,20 @@ const AccountSettings = ({ userStings }: Props) => {
    return (
       <Form {...form}>
          <form onSubmit={onSubmit} className='w-full space-y-6'>
-            <div>
-               <h3 className='mb-4 text-lg font-medium'>Email Notifications</h3>
+            <div className='p-4'>
+               <h3 className='mb-4 text-xl text-primary font-semibold'>أدارة الأشعارات .</h3>
                <div className='space-y-4'>
                   <FormField
                      control={form.control}
                      name='cases'
+                     defaultValue={userStings?.user?.cases}
                      render={({ field }) => (
                         <FormItem className='flex flex-row items-center justify-between rounded-lg border p-4'>
                            <div className='space-y-0.5'>
                               <FormLabel className='text-base'>Marketing emails</FormLabel>
                               <FormDescription>Receive emails about new products, features, and more.</FormDescription>
                            </div>
-                           <FormControl>
-                              <label className='inline-flex items-center cursor-pointer'>
-                                 <input type='checkbox' value='' className='sr-only peer' />
-                                 <div className="relative w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
-                                 <span className='ms-3 text-sm font-medium text-gray-900 dark:text-gray-300'>Toggle me</span>
-                              </label>
-                           </FormControl>
+                           <CustomSwitch value={field.value ?? false} onChange={field.onChange} />
                         </FormItem>
                      )}
                   />

@@ -32,7 +32,7 @@ class UserServerServices {
             const response = await axios.get(`/currentuser`);
             return response;
         } catch (error) {
-            console.log(error);
+            // console.log(error);
             return null;
         }
     }
@@ -43,7 +43,7 @@ class UserServerServices {
             const response = await axios.get(`/users/profile/${id}`);
             return response;
         } catch (error) {
-            console.log(error);
+            // console.log(error);
             return null;
         }
     }

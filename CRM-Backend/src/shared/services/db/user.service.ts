@@ -215,6 +215,7 @@ class UserServices {
       username: 1,
       createdAt: 1,
       updatedAt: 1,
+      'user._id': 1,
       'user.email': 1,
       'user.phone': 1,
       'user.ticketCount': 1,

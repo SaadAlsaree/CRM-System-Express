@@ -5,6 +5,8 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useRouter } from 'next/navigation';
 
+// Icons
+import { TriangleAlert } from 'lucide-react';
 //components
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { useToast } from '@/components/ui/use-toast';
@@ -13,8 +15,8 @@ import { Input } from '@/components/ui/input';
 import { ErrorMessage, Spinner } from '@/components';
 import { Button } from '@/components/ui/button';
 import { updateUserInfoSchema } from '@/schema/user.schema';
-// Icons
-import { TriangleAlert } from 'lucide-react';
+// Services
+import { userClientService } from '@/services/user/user.client.service';
 
 type updateUserInfoData = z.infer<typeof updateUserInfoSchema>;
 
@@ -45,7 +47,15 @@ const GeneralInfo = ({ userInfo, isCurrentUser }: Props) => {
    const onSubmit = form.handleSubmit(async (userData) => {
       setSubmitting(true);
       try {
-         console.log(userData);
+         const response = await userClientService.updateUserInfo(userInfo?.user?._id, userData);
+         if (response) {
+            toast({
+               title: 'تم تحديث البيانات بنجاح',
+               description: 'تم تحديث البيانات بنجاح',
+               variant: 'default'
+            });
+            router.refresh();
+         }
       } catch (error) {
          setSubmitting(false);
          setError('حدث خطأ غير متوقع.');

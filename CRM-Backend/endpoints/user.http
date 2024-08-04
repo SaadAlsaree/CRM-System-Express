@@ -16,7 +16,7 @@ withCredentials: true
 
 // Get User Profile
 ###
-GET {{baseUrl}}/{{urlPath}}/users/profile/66ab7d673fb2e803f97058ff
+GET {{baseUrl}}/{{urlPath}}/users/profile/66abb87d2217037daf968975
 Content-Type: application/json
 Accept: application/json
 withCredentials: true
@@ -105,7 +105,7 @@ withCredentials: true
 
 // update user is active authId
 ###
-PUT  {{baseUrl}}/{{urlPath}}/users/update/active/66a7ae3f012b3971653cf5fa
+PUT  {{baseUrl}}/{{urlPath}}/users/update/active/66af7b271e12e64e9e9d7f8e
 Content-Type: application/json
 Accept: application/json
 withCredentials: true

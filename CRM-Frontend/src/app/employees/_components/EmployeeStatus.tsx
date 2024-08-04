@@ -12,7 +12,6 @@ type Props = {
 const EmployeeStatus = ({ userId, isActivated }: Props) => {
    const router = useRouter();
    const handelActivated = async (userId: string, isActivated: boolean) => {
-      console.log(userId, isActivated);
       await userClientService.updateUserActivationStatus(userId, isActivated);
       router.refresh();
    };

@@ -24,6 +24,18 @@ class UserClientService {
             return null;
         }
     }
+
+    // update user info
+    public async updateUserInfo(userId: string, data: any): Promise<any> {
+        try {
+            const response = await axios.put(`/users/update/info/${userId}`, data, {
+                withCredentials: true
+            })
+            return response;
+        } catch (error) {
+            return null;
+        }
+    }
 }
 
 

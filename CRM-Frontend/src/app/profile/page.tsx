@@ -14,7 +14,7 @@ const ProfilePage = async () => {
    return (
       <ProtectedPage>
          <div className='rounded-[3px] border '>
-            <ProfileHeader />
+            <ProfileHeader userData={currentUser?.data?.UserProfile} />
             <div className='mt-4'>
                <Tabs defaultValue='GeneralInfo' className='w-full'>
                   <TabsList className='w-full'>
