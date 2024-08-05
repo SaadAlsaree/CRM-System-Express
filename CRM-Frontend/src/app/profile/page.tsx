@@ -36,7 +36,7 @@ const ProfilePage = async () => {
                      <JobInfo jobInfo={currentUser?.data?.UserProfile} />
                   </TabsContent>
                   <TabsContent value='Settings'>
-                     <AccountSettings userStings={currentUser?.data?.UserProfile} />
+                     <AccountSettings userStings={currentUser?.data?.UserProfile?.user} />
                   </TabsContent>
                </Tabs>
             </div>
