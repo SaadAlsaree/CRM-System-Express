@@ -10,18 +10,17 @@ Accept: application/json
 withCredentials: true
 
 {
-    "name": "Department 4",
-    "code": "D-4",
-    "slug": "Department-4",
-    "email": "dep-4@inss.com",
+    "name": "Department 1",
+    "code": "D-1",
+    "email": "dep-1@inss.com",
     "phone": "3553534534",
     "avatar": "https://www.google.com",
-    "description": "This is organization 4",
-    "organization": "66a679011ca86ecf5b5204ef"
+    "description": "This is organization 1",
+    "organization": "66b0efb8cae4af434d688da0"
 }
 
 ###
-GET {{baseUrl}}/{{urlPath}}/departments/66a678811ca86ecf5b5204ea
+GET {{baseUrl}}/{{urlPath}}/departments/66b0efb8cae4af434d688da0
 Content-Type: application/json
 Accept: application/json
 withCredentials: true

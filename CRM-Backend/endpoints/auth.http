@@ -7,17 +7,17 @@
 POST {{baseUrl}}/{{urlPath}}/auth/new
 Content-Type: application/json
 Accept: application/json
-withCredentials: true
+withCredentials: trues
 
 {
-    "userLogin": "saad",
+    "userLogin": "101313",
     "password": "123456",
     "avatarColor": "red",
-    "username": "saad alsaree",
-    "role": ["66ad2e229dc1d4c6003fbdef",],
-    "rank": "66ad2d5b7798f4db1a913aa8",
-    "organizationId": "66a678811ca86ecf5b5204ea",
-    "departmentId": "66a679551ca86ecf5b5204f6"
+    "username": "سعد ناظم جابر",
+    "role": ["66b0eb1489394532782eb1b0","66b0eb0c89394532782eb1af"],
+    "rank": "66b0eb602f0d7931d24bc7a7",
+    "organizationId": "66b0efb8cae4af434d688da0",
+    "departmentId": "66b0efeacae4af434d688da5"
 }
 
 

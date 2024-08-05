@@ -10,16 +10,16 @@ Accept: application/json
 withCredentials: true
 
 {
-    "name": "Organization 3",
-    "code": "ORG4",
+    "name": "Organization 1",
+    "code": "ORG1",
     "type": "A",
-    "slug": "organization-4",
+    "slug": "organization-1",
     "phone": "123456789",
-    "email": "org-4@inns.com",
+    "email": "org-1@inns.com",
     "address": "123, Street, City, Country",
     "website": "http://localhost:3000",
     "avatar": "https://www.google.com",
-    "description": "This is organization 4"
+    "description": "This is organization 1"
 }
 
 ###

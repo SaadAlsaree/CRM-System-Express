@@ -18,16 +18,17 @@ export default (app: Application) => {
     //Auth
     app.use(BASE_PATH, authRoutes.routes());
     // role
-    app.use(BASE_PATH, authMiddleware.verifyUser, authMiddleware.checkActivated, roleRoutes.routes());
+    app.use(BASE_PATH, roleRoutes.routes());
     //rank
-    app.use(BASE_PATH, authMiddleware.verifyUser, rankRoutes.routes());
+    app.use(BASE_PATH, rankRoutes.routes());
+    // Organization routes
+    app.use(BASE_PATH, organizationRoutes.routes());
+    app.use(BASE_PATH, departmentRoutes.routes());
+
     //Current User
     app.use(BASE_PATH, authMiddleware.verifyUser, currentUserRoutes.routes());
     // user routes
     app.use(BASE_PATH, authMiddleware.verifyUser, userRoutes.routes());
-    // Organization routes
-    app.use(BASE_PATH, authMiddleware.verifyUser, authMiddleware.checkActivated, organizationRoutes.routes());
-    app.use(BASE_PATH, authMiddleware.verifyUser, authMiddleware.checkActivated, departmentRoutes.routes());
 
   };
   routes();
