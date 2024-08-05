@@ -3,12 +3,15 @@ import React, { useState } from 'react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
+import { useRouter } from 'next/navigation';
 
 import { Button } from '@/components/ui/button';
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel } from '@/components/ui/form';
 import { useToast } from '@/components/ui/use-toast';
 import { updateUserStingsSchema } from '@/schema/user.schema';
 import { CustomSwitch, Spinner } from '@/components';
+// Services
+import { userClientService } from '@/services/user/user.client.service';
 
 type updateUserStingsData = z.infer<typeof updateUserStingsSchema>;
 
@@ -19,6 +22,7 @@ type Props = {
 const NotificationsForm = ({ userStings }: Props) => {
    const [error, setError] = useState('');
    const [isSubmitting, setSubmitting] = useState(false);
+   const router = useRouter();
    const { toast } = useToast();
 
    //    console.log(userStings?.notifications.cases);
@@ -40,6 +44,15 @@ const NotificationsForm = ({ userStings }: Props) => {
       setSubmitting(true);
       try {
          console.log(userData);
+         const response = await userClientService.updateUserNotificationSettings(userStings._id, userData);
+         if (response) {
+            toast({
+               title: 'تم تحديث البيانات بنجاح',
+               description: 'تم تحديث البيانات بنجاح',
+               variant: 'default'
+            });
+            router.refresh();
+         }
       } catch (error) {
          setSubmitting(false);
          setError('حدث خطأ غير متوقع.');

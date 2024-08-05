@@ -36,6 +36,18 @@ class UserClientService {
             return null;
         }
     }
+
+    // update user notification settings
+    public async updateUserNotificationSettings(userId: string, data: any): Promise<any> {
+        try {
+            const response = await axios.put(`/users/update/settings/${userId}`, data, {
+                withCredentials: true
+            })
+            return response;
+        } catch (error) {
+            return null;
+        }
+    }
 }
 
 
