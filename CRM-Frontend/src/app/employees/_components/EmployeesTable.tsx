@@ -24,7 +24,7 @@ const EmployeesTable = ({ columns, searchParams, userData }: Props) => {
                {userData?.map((user: any, index: number) => (
                   <TableRow key={index}>
                      <TableCell className='text-primary hover:underline  duration-100 transition-all cursor-pointer'>
-                        <Link href={`/profile/${user.authId._id}`}>{user.authId.username}</Link>
+                        <Link href={`/profile/${user?._id}`}>{user?.username}</Link>
                         <div className='block md:hidden'>{user.userLogin}</div>
                      </TableCell>
                      <TableCell className='hidden md:table-cell'>{user.userLogin}</TableCell>
@@ -33,7 +33,7 @@ const EmployeesTable = ({ columns, searchParams, userData }: Props) => {
                      <TableCell className='hidden md:table-cell'>{user.phone}</TableCell>
                      <TableCell className='hidden md:table-cell'>{user.email}</TableCell>
                      <TableCell className='hidden md:table-cell'>
-                        <EmployeeStatus userId={user.authId._id} isActivated={user.authId.isActivated} />
+                        <EmployeeStatus userId={user?._id} isActivated={user?.isActivated} />
                      </TableCell>
                   </TableRow>
                ))}

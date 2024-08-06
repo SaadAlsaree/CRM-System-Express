@@ -3,7 +3,8 @@
 
 
 ###
-GET {{baseUrl}}/{{urlPath}}/users/all/1
+# GET {{baseUrl}}/{{urlPath}}/users/all/1/query?userLogin=101313&organizationId=66a678811ca86ecf5b5204ea&departmentId=323
+GET {{baseUrl}}/{{urlPath}}/users/all/1/query?userLogin=test&organizationId=&departmentId=
 Content-Type: application/json
 Accept: application/json
 withCredentials: true

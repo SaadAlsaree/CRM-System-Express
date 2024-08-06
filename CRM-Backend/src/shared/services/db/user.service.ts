@@ -48,15 +48,27 @@ class UserServices {
 
   // Get all users
   public async getUsers(query: IGetUserQuery, skip: number = 0, limit: number = 0): Promise<IUserDocument[]> {
+    let userQuery = {};
+    if (query.userLogin) {
+      userQuery = { $or: [{ userLogin: query.userLogin }, { username: query.userLogin }] };
+    } else {
+      userQuery = query;
+    }
+    if (query.organizationId) {
+      userQuery = { ...userQuery, organizationId: new mongoose.Types.ObjectId(query.organizationId) };
+    }
+    if (query.departmentId) {
+      userQuery = { ...userQuery, departmentId: new mongoose.Types.ObjectId(query.departmentId) };
+    }
 
-    const users: IUserDocument[] = await UserModel.aggregate([
-      // { $match: userQuery },
-      { $lookup: { from: 'Auth', localField: 'authId', foreignField: '_id', as: 'authId' } },
-      { $lookup: { from: 'Organization', localField: 'authId.organizationId', foreignField: '_id', as: 'organization' } },
+    const users: IUserDocument[] = await AuthModel.aggregate([
+      { $match: userQuery },
+      { $lookup: { from: 'User', localField: '_id', foreignField: 'authId', as: 'user' } },
+      { $unwind: '$user' },
+      { $lookup: { from: 'Organization', localField: 'organizationId', foreignField: '_id', as: 'organization' } },
       { $unwind: '$organization' },
-      { $lookup: { from: 'Department', localField: 'authId.departmentId', foreignField: '_id', as: 'department' } },
+      { $lookup: { from: 'Department', localField: 'departmentId', foreignField: '_id', as: 'department' } },
       { $unwind: '$department' },
-      { $unwind: '$authId' },
       { $sort: { createdAt: -1 } },
       { $skip: skip },
       { $project: this.aggregateProject() },
@@ -163,8 +175,21 @@ class UserServices {
   }
 
   // get total users
-  public async getTotalUsers(): Promise<number> {
-    const totalUsers: number = await UserModel.find({}).countDocuments();
+  public async getTotalUsers(query: IGetUserQuery): Promise<number> {
+    let userQuery = {};
+    if (query.userLogin) {
+      userQuery = { userLogin: query.userLogin };
+    } else {
+      userQuery = query;
+    }
+    if (query.organizationId) {
+      userQuery = { ...userQuery, organizationId: new mongoose.Types.ObjectId(query.organizationId) };
+    }
+    if (query.departmentId) {
+      userQuery = { ...userQuery, departmentId: new mongoose.Types.ObjectId(query.departmentId) };
+    }
+
+    const totalUsers: number = await UserModel.find(userQuery).countDocuments();
     return totalUsers;
   }
 
@@ -194,9 +219,6 @@ class UserServices {
       'authId.password': 0,
       password: 0,
       passwordResetToken: 0,
-      organizationId: 0,
-      departmentId: 0,
-
     };
   }
 

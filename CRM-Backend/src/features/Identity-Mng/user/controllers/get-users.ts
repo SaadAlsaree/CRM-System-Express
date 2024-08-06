@@ -4,6 +4,7 @@ import HTTP_STATUS from 'http-status-codes';
 import { IAuthDocument } from '@auth/interfaces/auth.interface';
 import { userServices } from '@service/db/user.service';
 import { IUserDocument } from '@user/interfaces/user.interface';
+import { Helpers } from '@globals/helpers/helpers';
 
 
 
@@ -14,14 +15,19 @@ export class Get {
   public async all(req: Request, res: Response): Promise<void> {
 
     const { page } = req.params;
+    const search: string = req.query.userLogin as string || '';
+    const organizationId: string = req.query.organizationId as string || '';
+    const departmentId: string = req.query.departmentId as string || '';
+
+    const userLogin = new RegExp(Helpers.escapeRegex(search), 'i');
     const skip: number = (parseInt(page) - 1) * PAGE_SIZE;
     const limit: number = PAGE_SIZE * parseInt(page);
     const newSkip: number = skip === 0 ? skip : skip + 1;
 
     // get all users
-    const allUsers: IUserDocument[] = await userServices.getUsers({}, newSkip, limit);
+    const allUsers: IUserDocument[] = await userServices.getUsers({ userLogin, organizationId, departmentId }, newSkip, limit);
     // get total users
-    const totalUsers: number = await userServices.getTotalUsers();
+    const totalUsers: number = await userServices.getTotalUsers({ userLogin, organizationId, departmentId });
     res.status(HTTP_STATUS.OK).json({ message: 'Get users', users: allUsers, totalUsers: totalUsers });
 
   }

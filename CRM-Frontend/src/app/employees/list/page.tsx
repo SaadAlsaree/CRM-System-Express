@@ -1,16 +1,17 @@
 import Link from 'next/link';
 
 import ProtectedPage from '@/components/ProtectedPage';
-import EmployeesTable from '../_components/EmployeesTable';
-//services
-import { userServerService } from '@/services/user/user.server.service';
+import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import Pagination from '@/components/Pagination';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Building2, FileDown, Plus, Search } from 'lucide-react';
-import { Input } from '@/components/ui/input';
-import EmployeeSearch from '../_components/EmployeeSearch';
+import EmployeesTable from '../_components/EmployeesTable';
 import EmployeeFilter from '../_components/EmployeeFilter';
+//services
+import { userServerService } from '@/services/user/user.server.service';
+import { orgService } from '@/services/organization/org.server.service';
+//Icons
+import { Building2, FileDown, Filter, Plus, Search } from 'lucide-react';
 
 const columns: { label: string; value: any; className?: string }[] = [
    { label: 'الأسم', value: 'name', className: 'font-bold' },
@@ -25,14 +26,18 @@ const columns: { label: string; value: any; className?: string }[] = [
 ];
 
 interface Props {
-   searchParams: { page: string; username: string };
+   searchParams: { page: string; search: string; organization: string; department: string };
 }
 
 const EmployeesListPage = async ({ searchParams }: Props) => {
    const page = parseInt(searchParams.page) || 1;
    const pageSize = 12;
+   const userLogin = searchParams.search || '';
+   const organizationId = searchParams.organization || '';
+   const departmentId = searchParams.department || '';
 
-   const userList = await userServerService.getAllUsers(page);
+   const orgList = await orgService.getOrgs();
+   const userList = await userServerService.getAllUsers(page, userLogin, organizationId, departmentId);
 
    return (
       <ProtectedPage>
@@ -48,11 +53,19 @@ const EmployeesListPage = async ({ searchParams }: Props) => {
                   </div>
 
                   <div className='flex flex-row items-center gap-2'>
-                     {/* Search */}
-                     <EmployeeSearch searchParams={searchParams} />
-
+                     {/* <Popover>
+                        <PopoverTrigger className='w-full'>
+                           <div className='border rounded-md px-4 py-[7px] flex items-center gap-4'>
+                              <h1 className='text-muted-foreground'>فلترة</h1>
+                              <Filter className=' text-muted-foreground' />
+                           </div>
+                        </PopoverTrigger>
+                        <PopoverContent className='w-full'>
+                           <EmployeeFilter orgList={orgList} />
+                        </PopoverContent>
+                     </Popover> */}
                      {/* Filter */}
-                     <EmployeeFilter />
+                     <EmployeeFilter orgList={orgList} />
 
                      <Button variant='outline'>
                         <Link href='/employees/create' className='ml-4'>

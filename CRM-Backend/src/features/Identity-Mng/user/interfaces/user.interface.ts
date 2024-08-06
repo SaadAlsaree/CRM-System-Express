@@ -57,7 +57,7 @@ export interface IUserInfo {
 
 
 export interface IGetUserQuery {
-  userLogin?: string;
+  userLogin?: RegExp;
   authId?: string;
   organizationId?: string;
   departmentId?: string;

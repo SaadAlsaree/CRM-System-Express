@@ -15,7 +15,7 @@ class UserRoutes {
 
   public routes(): Router {
     // User routes
-    this.router.get('/users/all/:page', Get.prototype.all);
+    this.router.get('/users/all/:page/query', Get.prototype.all);
     this.router.get('/users/:userId', Get.prototype.byId);
     this.router.get('/users/organization/:organizationId/:page', Get.prototype.byOrganization);
     this.router.get('/users/department/:departmentId/:page', Get.prototype.byDepartment);

@@ -28,7 +28,7 @@ const ProfileHeader = ({ userData }: Props) => {
                      <Badge className='bg-red-500 text-white mb-2'>Inactive</Badge>
                   )}
                   <Separator className='mb-7 bg-white' />
-                  <p className='text-[16px] font-bold text-white'>{userData.username}</p>
+                  <p className='text-[16px] font-bold text-white'>{userData?.username}</p>
 
                   <p className='text-[12px] text-gray-100'>{userData?.user?.email}</p>
                </div>
