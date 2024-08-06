@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import { CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import EmployeeStatus from './EmployeeStatus';
 
@@ -11,41 +10,35 @@ interface Props {
 const EmployeesTable = ({ columns, searchParams, userData }: Props) => {
    return (
       <div>
-         <CardHeader className='px-7'>
-            <CardTitle className='text-primary'>الموظفين</CardTitle>
-            <CardDescription>قائمة موظفي الدوائر و المديريات جهاز الأمن الوطني .</CardDescription>
-         </CardHeader>
-         <CardContent>
-            <Table>
-               <TableHeader>
-                  <TableRow>
-                     {columns.map((column, index) => (
-                        <TableHead key={index} className={column.className}>
-                           {column.label}
-                        </TableHead>
-                     ))}
-                  </TableRow>
-               </TableHeader>
-               <TableBody>
-                  {userData?.map((user: any, index: number) => (
-                     <TableRow key={index}>
-                        <TableCell className='text-primary hover:underline  duration-100 transition-all cursor-pointer'>
-                           <Link href={`/profile/${user.authId._id}`}>{user.authId.username}</Link>
-                           <div className='block md:hidden'>{user.userLogin}</div>
-                        </TableCell>
-                        <TableCell className='hidden md:table-cell'>{user.userLogin}</TableCell>
-                        <TableCell className='hidden md:table-cell'>{user.organization.name}</TableCell>
-                        <TableCell className='hidden md:table-cell'>{user.department.name}</TableCell>
-                        <TableCell className='hidden md:table-cell'>{user.phone}</TableCell>
-                        <TableCell className='hidden md:table-cell'>{user.email}</TableCell>
-                        <TableCell className='hidden md:table-cell'>
-                           <EmployeeStatus userId={user.authId._id} isActivated={user.authId.isActivated} />
-                        </TableCell>
-                     </TableRow>
+         <Table>
+            <TableHeader>
+               <TableRow>
+                  {columns.map((column, index) => (
+                     <TableHead key={index} className={column.className}>
+                        {column.label}
+                     </TableHead>
                   ))}
-               </TableBody>
-            </Table>
-         </CardContent>
+               </TableRow>
+            </TableHeader>
+            <TableBody>
+               {userData?.map((user: any, index: number) => (
+                  <TableRow key={index}>
+                     <TableCell className='text-primary hover:underline  duration-100 transition-all cursor-pointer'>
+                        <Link href={`/profile/${user.authId._id}`}>{user.authId.username}</Link>
+                        <div className='block md:hidden'>{user.userLogin}</div>
+                     </TableCell>
+                     <TableCell className='hidden md:table-cell'>{user.userLogin}</TableCell>
+                     <TableCell className='hidden md:table-cell'>{user.organization.name}</TableCell>
+                     <TableCell className='hidden md:table-cell'>{user.department.name}</TableCell>
+                     <TableCell className='hidden md:table-cell'>{user.phone}</TableCell>
+                     <TableCell className='hidden md:table-cell'>{user.email}</TableCell>
+                     <TableCell className='hidden md:table-cell'>
+                        <EmployeeStatus userId={user.authId._id} isActivated={user.authId.isActivated} />
+                     </TableCell>
+                  </TableRow>
+               ))}
+            </TableBody>
+         </Table>
       </div>
    );
 };
