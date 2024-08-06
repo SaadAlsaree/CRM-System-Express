@@ -16,11 +16,11 @@ withCredentials: true
     "phone": "3553534534",
     "avatar": "https://www.google.com",
     "description": "This is organization 1",
-    "organization": "66b0efb8cae4af434d688da0"
+    "organization": "66b1d4ef43c6a0b1d6f49f2a"
 }
 
 ###
-GET {{baseUrl}}/{{urlPath}}/departments/66b0efb8cae4af434d688da0
+GET {{baseUrl}}/{{urlPath}}/departments/66b1d4ef43c6a0b1d6f49f2a
 Content-Type: application/json
 Accept: application/json
 withCredentials: true

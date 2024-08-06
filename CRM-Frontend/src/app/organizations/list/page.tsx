@@ -12,7 +12,6 @@ const columns: { label: string; value: any; className?: string }[] = [
    { label: 'الأسم', value: 'name', className: 'font-bold' },
    { label: 'الترميز', value: 'code', className: 'hidden md:table-cell font-bold' },
    { label: 'النوع', value: 'type', className: 'hidden md:table-cell font-bold' },
-   { label: 'عدد الموظفين', value: 'employees', className: 'hidden md:table-cell font-bold' },
    { label: 'العنوان', value: 'address', className: 'hidden md:table-cell font-bold' },
    { label: 'الهاتف', value: 'phone', className: 'hidden md:table-cell font-bold' },
    { label: 'البريد الإلكتروني', value: 'email', className: 'hidden md:table-cell font-bold' },

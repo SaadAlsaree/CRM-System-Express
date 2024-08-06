@@ -1,6 +1,7 @@
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import OrganizationTableActions from './OrganizationTableActions';
 import Link from 'next/link';
+import { Badge } from '@/components/ui/badge';
 
 type Props = {
    searchParams: any;
@@ -32,8 +33,18 @@ const OrganizationTable = ({ searchParams, columns, OrgData }: Props) => {
                         <div className='block md:hidden'>{org.code}</div>
                      </TableCell>
                      <TableCell className='hidden md:table-cell'>{org.code}</TableCell>
-                     <TableCell className='hidden md:table-cell'>{org.type}</TableCell>
-                     <TableCell className='hidden md:table-cell'>{org.employeesCount}</TableCell>
+                     <TableCell className='hidden md:table-cell'>
+                        {org.type === 'A' ? (
+                           <Badge variant='outline' className='text-blue-500'>
+                              دائرة
+                           </Badge>
+                        ) : (
+                           <Badge variant='outline' className='text-green-500'>
+                              مديرية
+                           </Badge>
+                        )}
+                     </TableCell>
+
                      <TableCell className='hidden md:table-cell'>{org.address}</TableCell>
                      <TableCell className='hidden md:table-cell'>{org.phone}</TableCell>
                      <TableCell className='hidden md:table-cell'>{org.email}</TableCell>

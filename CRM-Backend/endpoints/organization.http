@@ -13,7 +13,6 @@ withCredentials: true
     "name": "Organization 1",
     "code": "ORG1",
     "type": "A",
-    "slug": "organization-1",
     "phone": "123456789",
     "email": "org-1@inns.com",
     "address": "123, Street, City, Country",

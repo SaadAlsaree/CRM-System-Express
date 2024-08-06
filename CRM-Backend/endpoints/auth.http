@@ -14,10 +14,10 @@ withCredentials: trues
     "password": "123456",
     "avatarColor": "red",
     "username": "سعد ناظم جابر",
-    "role": ["66b0eb1489394532782eb1b0","66b0eb0c89394532782eb1af"],
-    "rank": "66b0eb602f0d7931d24bc7a7",
-    "organizationId": "66b0efb8cae4af434d688da0",
-    "departmentId": "66b0efeacae4af434d688da5"
+    "role": ["66b1d48b71da5e2fb250f6d4","66b1d49b71da5e2fb250f6d5"],
+    "rank": "66b1d45143c6a0b1d6f49f1e",
+    "organizationId": "66b1d4ef43c6a0b1d6f49f2a",
+    "departmentId": "66b1d51343c6a0b1d6f49f2f"
 }
 
 
