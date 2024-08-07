@@ -68,7 +68,7 @@ const EmployeesListPage = async ({ searchParams }: Props) => {
                      <EmployeeFilter orgList={orgList} />
 
                      <Button variant='outline'>
-                        <Link href='/employees/create' className='ml-4'>
+                        <Link href='/employees/importFromExcel' className='ml-4'>
                            استيراد بيانات
                         </Link>
 

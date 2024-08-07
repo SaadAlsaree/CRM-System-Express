@@ -30,8 +30,8 @@ const EmployeesTable = ({ columns, searchParams, userData }: Props) => {
                      <TableCell className='hidden md:table-cell'>{user.userLogin}</TableCell>
                      <TableCell className='hidden md:table-cell'>{user.organization.name}</TableCell>
                      <TableCell className='hidden md:table-cell'>{user.department.name}</TableCell>
-                     <TableCell className='hidden md:table-cell'>{user.phone}</TableCell>
-                     <TableCell className='hidden md:table-cell'>{user.email}</TableCell>
+                     <TableCell className='hidden md:table-cell'>{user?.user?.phone}</TableCell>
+                     <TableCell className='hidden md:table-cell'>{user?.user?.email}</TableCell>
                      <TableCell className='hidden md:table-cell'>
                         <EmployeeStatus userId={user?._id} isActivated={user?.isActivated} />
                      </TableCell>
