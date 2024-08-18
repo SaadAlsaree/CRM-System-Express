@@ -111,12 +111,21 @@ class UserServices {
   }
 
   // Get user by authId
-  public async getUserByAuthId(userId: string): Promise<IUserDocument> {
-    const user: IUserDocument[] = await UserModel.aggregate([
-      { $match: { authId: new mongoose.Types.ObjectId(userId) } },
-      { $lookup: { from: 'Auth', localField: 'authId', foreignField: '_id', as: 'authId' } },
-      { $unwind: '$authId' },
-      { $project: this.aggregateProject() }
+  public async getUserByAuthId(authId: string): Promise<IUserDocument> {
+
+    const user: IUserDocument[] = await AuthModel.aggregate([
+      { $match: { _id: new mongoose.Types.ObjectId(authId) } },
+      { $lookup: { from: 'User', localField: '_id', foreignField: 'authId', as: 'user' } },
+      { $unwind: '$user' },
+      { $lookup: { from: 'Organization', localField: 'organizationId', foreignField: '_id', as: 'organization' } },
+      { $unwind: '$organization' },
+      { $lookup: { from: 'Department', localField: 'departmentId', foreignField: '_id', as: 'department' } },
+      { $unwind: '$department' },
+      { $lookup: { from: 'Rank', localField: 'rank', foreignField: '_id', as: 'rank' } },
+      { $unwind: '$rank' },
+      { $lookup: { from: 'Role', localField: 'role', foreignField: '_id', as: 'role' } },
+
+      { $project: this.aggregateProjectUser() }
     ]).exec();
 
     return user[0];
@@ -228,8 +237,12 @@ class UserServices {
       userLogin: 1,
       uId: 1,
       'role.roleName': 1,
+      'role._id': 1,
+      'rank._id': 1,
       'rank.rankName': 1,
+      'department._id': 1,
       'department.name': 1,
+      'organization._id': 1,
       'organization.name': 1,
       isActivated: 1,
       isDeleted: 1,

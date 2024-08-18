@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import EmployeeStatus from './EmployeeStatus';
+import { UserCog } from 'lucide-react';
 
 interface Props {
    columns: { label: string; value: any; className?: string }[];
@@ -34,6 +35,11 @@ const EmployeesTable = ({ columns, searchParams, userData }: Props) => {
                      <TableCell className='hidden md:table-cell'>{user?.user?.email}</TableCell>
                      <TableCell className='hidden md:table-cell'>
                         <EmployeeStatus userId={user?._id} isActivated={user?.isActivated} />
+                     </TableCell>
+                     <TableCell className='hidden md:table-cell'>
+                        <Link href={`/employees/edit/${user?._id}`}>
+                           <UserCog className='hover:text-primary duration-200 transition-colors' />
+                        </Link>
                      </TableCell>
                   </TableRow>
                ))}

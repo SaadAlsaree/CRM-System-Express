@@ -47,6 +47,17 @@ class UserServerServices {
             return null;
         }
     }
+
+    // get user by id
+    public async getUserById(id: string): Promise<any> {
+        try {
+            const response = await axios.get(`/users/${id}`);
+            return response;
+        } catch (error) {
+            // console.log(error);
+            return null;
+        }
+    }
 }
 
 

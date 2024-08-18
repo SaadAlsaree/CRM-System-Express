@@ -6,6 +6,7 @@ const organizationSchema = new Schema(
     name: { type: String, required: true, unique: true },
     code: { type: String, required: true, unique: true },
     type: { type: String, enum: ['A', 'B', 'Other'], required: true },
+    refId: [{ type: Schema.Types.ObjectId, ref: 'Organization', required: false }],
     phone: { type: String, required: false },
     address: { type: String, required: false },
     email: { type: String, required: false },

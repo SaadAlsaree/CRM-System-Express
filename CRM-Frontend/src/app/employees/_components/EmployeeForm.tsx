@@ -60,9 +60,9 @@ const EmployeeForm = ({ employee, rankList, roleList, orgList }: Props) => {
               avatarColor: employee.avatarColor,
               username: employee.username,
               role: employee?.role.map((r: any) => ({ label: r.roleName, value: r._id })),
-              rank: employee.rank,
-              organizationId: employee.organizationId,
-              departmentId: employee.departmentId
+              rank: employee.rank._id,
+              organizationId: employee.organization._id,
+              departmentId: employee.department._id
            }
          : {}
    });
@@ -223,7 +223,7 @@ const EmployeeForm = ({ employee, rankList, roleList, orgList }: Props) => {
                               <FormField
                                  control={form.control}
                                  name='organizationId'
-                                 defaultValue={employee?.organizationId}
+                                 defaultValue={employee?.organization._id}
                                  render={({ field }) => (
                                     <FormItem>
                                        <FormLabel>الدائرة أو المديرية :</FormLabel>
@@ -233,7 +233,7 @@ const EmployeeForm = ({ employee, rankList, roleList, orgList }: Props) => {
                                              handleOrgChange(selectedOrgId);
                                           }}
                                           name='organizationId'
-                                          defaultValue={employee?.organizationId}
+                                          defaultValue={employee?.organization._id}
                                        >
                                           <SelectTrigger>
                                              <SelectValue placeholder='الدائرة' />
@@ -257,14 +257,14 @@ const EmployeeForm = ({ employee, rankList, roleList, orgList }: Props) => {
                               <FormField
                                  control={form.control}
                                  name='departmentId'
-                                 defaultValue={employee?.departmentId}
+                                 defaultValue={employee?.department._id}
                                  render={({ field }) => (
                                     <FormItem>
                                        <FormLabel>القسم :</FormLabel>
                                        <Select
                                           onValueChange={field.onChange}
                                           name='departmentId'
-                                          defaultValue={employee?.departmentId}
+                                          defaultValue={employee?.department._id}
                                           disabled={department}
                                        >
                                           <SelectTrigger>

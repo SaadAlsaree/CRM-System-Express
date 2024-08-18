@@ -1,12 +1,10 @@
-import { Document } from 'mongoose';
+import mongoose, { Document } from 'mongoose';
 import { ObjectId } from 'mongodb';
 import { IDepartmentDocument } from '@department/interfaces/department.interface';
-import { IDirectorateDocument } from '@directorate/interfaces/directorate.interface';
 import { IAuthDocument } from '@auth/interfaces/auth.interface';
 
 
-
-export interface IOrganizationDocument extends Document {
+export interface IDirectorateDocument extends Document {
   _id: string | ObjectId;
   name: string;
   code: string;
@@ -15,11 +13,11 @@ export interface IOrganizationDocument extends Document {
   address?: string;
   email?: string;
   website?: string;
-  type?: string;
-  Directorates?: IDirectorateDocument[];
+  avatar?: string;
   Departments?: IDepartmentDocument[];
   Users?: IAuthDocument[];
-  avatar?: string;
+  organizationId?: mongoose.Types.ObjectId | string;
   createdAt?: Date;
   updatedAt?: Date;
 }
+

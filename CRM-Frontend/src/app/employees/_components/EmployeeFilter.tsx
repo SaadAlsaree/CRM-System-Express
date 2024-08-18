@@ -60,7 +60,7 @@ const EmployeeFilter = ({ orgList }: EmployeeFilterProps) => {
    return (
       <div className='flex flex-row gap-2'>
          <div className='relative ml-auto flex-1 md:grow-0'>
-            <Button className='absolute left-0'>
+            <Button className='absolute left-0' variant='outline'>
                <Search className='h-4 w-4 ' />
             </Button>
             {/* <Search className='absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground font-bold hover:text-blue-500 cursor-pointer duration-200 transition-colors' /> */}

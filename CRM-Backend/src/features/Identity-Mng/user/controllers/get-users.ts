@@ -33,8 +33,9 @@ export class Get {
   }
 
   public async byId(req: Request, res: Response): Promise<void> {
-    const { userId } = req.params;
-    const user: IUserDocument = await userServices.getUserById(userId);
+    const { authId } = req.params;
+
+    const user: IUserDocument = await userServices.getUserByAuthId(authId);
     res.status(HTTP_STATUS.OK).json({ message: 'User by id', user });
   }
 

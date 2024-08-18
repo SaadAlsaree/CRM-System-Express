@@ -1,3 +1,4 @@
+import { IAuthDocument } from '@auth/interfaces/auth.interface';
 import { ObjectId } from 'mongodb';
 import mongoose from 'mongoose';
 
@@ -5,6 +6,7 @@ import mongoose from 'mongoose';
 
 export interface IUserDocument extends Document {
   _id: ObjectId | string;
+  Auth: IAuthDocument;
   authId: mongoose.Types.ObjectId | string;
   username?: string;
   userLogin: string;

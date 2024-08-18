@@ -2,6 +2,7 @@ import mongoose, { Document } from 'mongoose';
 import { ObjectId } from 'mongodb';
 
 import { BaseResponse } from '@globals/types/common';
+import { IUserDocument } from '@user/interfaces/user.interface';
 
 declare global {
   namespace Express {
@@ -36,6 +37,8 @@ export interface IAuthDocument extends Document {
   password: string;
   passwordResetToken?: string;
   passwordResetExpires?: number | string;
+  User: IUserDocument;
+  directorateId?: mongoose.Types.ObjectId | string;
   organizationId: mongoose.Types.ObjectId | string;
   departmentId: mongoose.Types.ObjectId | string;
   comparePassword(candidatePassword: string): Promise<boolean>;
