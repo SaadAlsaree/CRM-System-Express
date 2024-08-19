@@ -1,0 +1,62 @@
+@baseUrl = http://localhost:5000
+@urlPath = api/v1
+
+
+
+###
+POST {{baseUrl}}/{{urlPath}}/directorate/new
+Content-Type: application/json
+Accept: application/json
+withCredentials: true
+
+{
+    "name": "Organization 1",
+    "code": "ORG1",
+    "phone": "123456789",
+    "email": "org-1@inns.com",
+    "address": "123, Street, City, Country",
+    "website": "http://localhost:3000",
+    "avatar": "https://www.google.com",
+    "description": "This is organization 1",
+    "organizationId": "66c36d33582b0827065a9415"
+}
+
+// get all directorates of no organization
+###
+GET {{baseUrl}}/{{urlPath}}/directorates
+Content-Type: application/json
+Accept: application/json
+withCredentials: true
+
+// get all directorates of an organization
+###
+GET {{baseUrl}}/{{urlPath}}/directorates/66c36d33582b0827065a9415
+Content-Type: application/json
+Accept: application/json
+withCredentials: true
+
+// get directorate by id
+###
+GET {{baseUrl}}/{{urlPath}}/directorate/66c36f498e5fe8f609cf1469/1
+Content-Type: application/json
+Accept: application/json
+withCredentials: true
+
+// update directorate
+###
+PUT {{baseUrl}}/{{urlPath}}/directorate/update/66c36f498e5fe8f609cf1469
+Content-Type: application/json
+Accept: application/json
+withCredentials: true
+
+{
+    "name": "الأمن السيبراني",
+    "code": "ج-33",
+    "phone": "123456789",
+    "email": "ج-33@inns.com",
+    "address": "123, Street, City, Country",
+    "website": "http://localhost:3000",
+    "avatar": "https://www.google.com",
+    "description": "دائرة الأمن السيبراني هي الجهة المسؤولة عن تأمين البنية التحتية للاتصالات و تأمين البيانات الرقمية و الحماية من الهجمات السيبرانية",
+    "organizationId": "66c36d33582b0827065a9415"
+}

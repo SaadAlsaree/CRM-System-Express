@@ -1,10 +1,10 @@
 import express, { Router } from 'express';
 
 // import { authMiddleware } from '@globals/helpers/auth-middleware';
-import { Create } from '@organization/controllers/organization/create-organization';
-import { Get } from '@organization/controllers/organization/get-organizations';
-import { Update } from '@organization/controllers/organization/update-organization';
-import { Delete } from '@organization/controllers/organization/delete-organization';
+import { Create } from '@organization/controllers/create-organization';
+import { Get } from '@organization/controllers/get-organizations';
+import { Update } from '@organization/controllers/update-organization';
+import { Delete } from '@organization/controllers/delete-organization';
 
 class OrganizationRoutes {
   private router: Router;
@@ -19,7 +19,7 @@ class OrganizationRoutes {
     //get organizations route
     this.router.get('/organizations', Get.prototype.organizations);
     //get organization by id route
-    this.router.get('/organizations/:id', Get.prototype.organization);
+    this.router.get('/organizations/:id/:page', Get.prototype.organization);
     //update organization route
     this.router.put('/organizations/:id', Update.prototype.Put);
     // delete organization route

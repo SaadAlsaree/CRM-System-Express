@@ -12,7 +12,6 @@ withCredentials: true
 {
     "name": "Organization 1",
     "code": "ORG1",
-    "type": "A",
     "phone": "123456789",
     "email": "org-1@inns.com",
     "address": "123, Street, City, Country",
@@ -28,29 +27,27 @@ Accept: application/json
 withCredentials: true
 
 ###
-GET {{baseUrl}}/{{urlPath}}/organizations/66a679011ca86ecf5b5204ef
+GET {{baseUrl}}/{{urlPath}}/organizations/66c36d33582b0827065a9415/3
 Content-Type: application/json
 Accept: application/json
 withCredentials: true
 
 
 ###
-PUT {{baseUrl}}/{{urlPath}}/organizations/66a111c17af5a05da524cefb
+PUT {{baseUrl}}/{{urlPath}}/organizations/66c36d33582b0827065a9415
 Content-Type: application/json
 Accept: application/json
 withCredentials: true
 
 {
-    "name": "Organization 3",
-    "code": "ORG3",
-    "type": "A",
-    "slug": "organization-3",
+    "name": "أمن الأتصالات",
+    "code": "ج-36",
     "phone": "123456789",
-    "email": "org-3@inns.com",
+    "email": "g-36@inns.com",
     "address": "123, Street, City, Country",
     "website": "http://localhost:3000",
     "avatar": "https://www.google.com",
-    "description": "This is organization 3 updated"
+    "description": "دائرة أمن الاتصالات و لأمن السيبراني هي الجهة المسؤولة عن تأمين البنية التحتية للاتصالات و تأمين البيانات الرقمية و الحماية من الهجمات السيبرانية"
 }
 
 ###
@@ -61,7 +58,7 @@ withCredentials: true
 
 
 ###
-GET {{baseUrl}}/{{urlPath}}/organizations/user-count/66a678811ca86ecf5b5204ea
+GET {{baseUrl}}/{{urlPath}}/organizations/user-count/66c36d33582b0827065a9415
 Content-Type: application/json
 Accept: application/json
 withCredentials: true

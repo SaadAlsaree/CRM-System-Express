@@ -1,7 +1,9 @@
+import mongoose from 'mongoose';
+
 import { AuthModel } from '@auth/models/auth.schema';
-import { IDepartmentDocument, IOrganizationDocument } from '@organization/interfaces/organization.interface';
-import { DepartmentModel } from '@organization/models/department.schema';
+import { IOrganizationDocument } from '@organization/interfaces/organization.interface';
 import { OrganizationModel } from '@organization/models/organization.schema';
+import { IAuthDocument } from '@auth/interfaces/auth.interface';
 
 
 class OrganizationService {
@@ -20,6 +22,14 @@ class OrganizationService {
     return !!organization;
   }
 
+  // check if organization exists by id
+  public async checkOrganizationById(id: string): Promise<boolean> {
+    const organization = await OrganizationModel.findById(id).exec();
+
+    return !!organization;
+  }
+
+
   // get all organizations
   public async getOrganizations(): Promise<IOrganizationDocument[]> {
     const organizations: IOrganizationDocument[] = await OrganizationModel.find().exec() as IOrganizationDocument[];
@@ -29,9 +39,13 @@ class OrganizationService {
 
   // get organization by id
   public async getOrganizationById(id: string): Promise<IOrganizationDocument> {
-    const organization: IOrganizationDocument = await OrganizationModel.findById(id).exec() as IOrganizationDocument;
+    const organization: IOrganizationDocument[] = await OrganizationModel.aggregate([
+      { $match: { _id: new mongoose.Types.ObjectId(id) } },
+      { $lookup: { from: 'Directorate', localField: '_id', foreignField: 'organizationId', as: 'directorate' } },
+      { $lookup: { from: 'Department', localField: '_id', foreignField: 'organizationId', as: 'department' } },
+    ]).exec();
 
-    return organization;
+    return organization[0];
   }
 
 
@@ -52,91 +66,71 @@ class OrganizationService {
     return count;
   }
 
-  // add user to organization
-  public async addUserToOrganization(id: string): Promise<void> {
-    await OrganizationModel.findByIdAndUpdate(id, { $inc: { employeesCount: 1 } }).exec();
+
+  // get all users in organization by organizationId and Pagination and search
+  public async getUsersInOrganization(organizationId: string, search: RegExp, skip: number = 0, limit: number = 0): Promise<IAuthDocument[]> {
+    let userQuery = {};
+
+    if (search) {
+      userQuery = { userLogin: search };
+    }
+    const users: IAuthDocument[] = await AuthModel.aggregate([
+      { $match: { organizationId: new mongoose.Types.ObjectId(organizationId) } },
+      { $match: userQuery },
+      { $lookup: { from: 'User', localField: 'authId', foreignField: '_id', as: 'user' } },
+      { $unwind: '$user' },
+      { $sort: { createdAt: -1 } },
+      { $skip: skip },
+      { $limit: limit },
+      { $project: this.aggregateProjectUser() }
+    ]).exec();
+
+    return users;
   }
 
-  // remove user from organization
-  public async removeUserFromOrganization(id: string): Promise<void> {
-    await OrganizationModel.findByIdAndUpdate(id, { $inc: { employeesCount: -1 } }).exec();
-  }
 
-
-  // Department Services //
-
-  // create department
-  public async createDepartment(data: IDepartmentDocument): Promise<void> {
-    await DepartmentModel.create(data);
-  }
-
-  // check if department exists in organization
-  public async checkDepartment(data: IDepartmentDocument): Promise<boolean> {
-    const query = { $and: [{ name: data.name }, { organization: data.organization }] };
-
-    const department = await DepartmentModel.findOne(query).exec();
-
-    return !!department;
-  }
-
-  // get all departments in organization
-  public async getDepartments(organizationId: string): Promise<IDepartmentDocument[]> {
-    const departments: IDepartmentDocument[] = await DepartmentModel.find({ organization: organizationId }).exec() as IDepartmentDocument[];
-
-    return departments;
-  }
-
-  // get department count in organization
-  public async getDepartmentCount(organizationId: string): Promise<number> {
-    const count: number = await DepartmentModel.countDocuments({ organization: organizationId }).exec();
-
-    return count;
-  }
-
-  // get department by id
-  public async getDepartmentById(id: string): Promise<IDepartmentDocument> {
-
-    const department: IDepartmentDocument = await DepartmentModel.findById(id).exec() as IDepartmentDocument;
-
-    return department;
-  }
-
-  // update department
-  public async updateDepartment(id: string, data: IDepartmentDocument): Promise<void> {
-    await DepartmentModel.findByIdAndUpdate(id, data).exec();
-  }
-
-  // delete department
-  public async deleteDepartment(id: string): Promise<void> {
-    // await DepartmentModel.findByIdAndDelete(id).exec();
-    console.log(id);
-  }
-
-  // add user to department
-  public async addUserToDepartment(id: string): Promise<void> {
-    await DepartmentModel.findByIdAndUpdate(id, { $inc: { employeesCount: 1 } }).exec();
-  }
-
-  // remove user from department
-  public async removeUserFromDepartment(id: string): Promise<void> {
-    await DepartmentModel.findByIdAndUpdate(id, { $inc: { employeesCount: -1 } }).exec();
-  }
-
-  // get userCount in organization
+  // get userCount in organization count
   public async getUserCountInOrganization(organizationId: string): Promise<number> {
     const count: number = await AuthModel.countDocuments({ organizationId: organizationId }).exec();
 
     return count;
   }
 
-  // get userCount in department
-  public async getUserCountInDepartment(departmentId: string): Promise<number> {
-    const count: number = await AuthModel.countDocuments({ departmentId: departmentId }).exec();
-
-    return count;
+  private aggregateProjectUser() {
+    return {
+      _id: 1,
+      userLogin: 1,
+      uId: 1,
+      'role.roleName': 1,
+      'role._id': 1,
+      'rank._id': 1,
+      'rank.rankName': 1,
+      'department._id': 1,
+      'department.name': 1,
+      'organization._id': 1,
+      'organization.name': 1,
+      isActivated: 1,
+      isDeleted: 1,
+      avatarColor: 1,
+      username: 1,
+      createdAt: 1,
+      updatedAt: 1,
+      'user._id': 1,
+      'user.email': 1,
+      'user.phone': 1,
+      'user.ticketCount': 1,
+      'user.taskCount': 1,
+      'user.casesCount': 1,
+      'user.blocked': 1,
+      'user.followersCount': 1,
+      'user.followingCount': 1,
+      'user.notifications': 1,
+      'user.leave': 1,
+      'user.address': 1,
+      'user.displayName': 1,
+      'user.work': 1,
+    };
   }
-
-
 }
 
 

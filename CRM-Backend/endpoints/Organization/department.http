@@ -2,7 +2,7 @@
 @urlPath = api/v1
 
 
-
+// create department in directorate
 ###
 POST {{baseUrl}}/{{urlPath}}/departments/new
 Content-Type: application/json
@@ -14,11 +14,25 @@ withCredentials: true
     "code": "D-1",
     "email": "dep-1@inss.com",
     "phone": "3553534534",
-    "avatar": "https://www.google.com",
     "description": "This is organization 1",
-    "organization": "66c1f988407824318079beea"
+    "directorateId": "66c36f498e5fe8f609cf1469"
 }
 
+// create department in organization
+###
+POST {{baseUrl}}/{{urlPath}}/departments/new
+Content-Type: application/json
+Accept: application/json
+withCredentials: true
+
+{
+    "name": "Department 1",
+    "code": "D-1",
+    "email": "dep-1@inss.com",
+    "phone": "3553534534",
+    "description": "This is organization 1",
+    "organizationId": "66c36d33582b0827065a9415"
+}
 ###
 GET {{baseUrl}}/{{urlPath}}/departments/66c1f988407824318079beea
 Content-Type: application/json
@@ -33,18 +47,17 @@ withCredentials: true
 
 
 ###
-PUT {{baseUrl}}/{{urlPath}}/departments/669cfdc50cfdf01ad8744c94
+PUT {{baseUrl}}/{{urlPath}}/departments/66c37d4d6b1a19a48f5c6c4e
 Content-Type: application/json
 Accept: application/json
 withCredentials: true
 
 {
-    "name": "Organization 1",
-    "code": "ORG1",
-    "slug": "organization-1",
+    "name": "قسم الأمن السيبراني",
+    "code": "ق-1",
     "avatar": "https://www.google.com",
-    "description": "This is organization 1 updated",
-    "organization": "669cfca30cfdf01ad8744c88"
+    "description": "قسم الأمن السيبراني هو الجهة المسؤولة عن تأمين البنية التحتية للاتصالات و تأمين البيانات الرقمية و الحماية من الهجمات السيبرانية",
+    "directorateId": "66c36f498e5fe8f609cf1469"
 }
 
 ###

@@ -15,8 +15,9 @@ withCredentials: trues
     "avatarColor": "red",
     "username": "سعد ناظم جابر",
     "role": ["66c1f9dbee5417d0cc9e7452","66c1fbd5ee5417d0cc9e7453"],
-    "rank": "66c1fc7e407824318079befc",
-    "organizationId": "66c1f988407824318079beea",
+    "rank": "66c37badcc6f88e4eb39c314",
+    "organizationId": "66c36d33582b0827065a9415",
+    "departmentId": "66c36f498e5fe8f609cf1469",
     "departmentId": "66c1f9a9407824318079beef"
 }
 

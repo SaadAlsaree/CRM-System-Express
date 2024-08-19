@@ -23,3 +23,10 @@ export interface IOrganizationDocument extends Document {
   createdAt?: Date;
   updatedAt?: Date;
 }
+
+export interface IGetUsersInOrganization {
+  organizationId: string;
+  userLogin?: string;
+  page?: number;
+  limit?: number;
+}

@@ -21,3 +21,11 @@ export interface IDirectorateDocument extends Document {
   updatedAt?: Date;
 }
 
+
+export interface IGetUsersInDirectorate {
+  directorateId: string;
+  userLogin?: string;
+  page?: number;
+  limit?: number;
+}
+

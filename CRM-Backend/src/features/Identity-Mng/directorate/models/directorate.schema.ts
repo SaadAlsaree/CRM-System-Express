@@ -1,7 +1,9 @@
-import { model, Model, Schema } from 'mongoose';
-import { IOrganizationDocument } from '@organization/interfaces/organization.interface';
+import mongoose, { model, Model, Schema } from 'mongoose';
 
-const organizationSchema = new Schema(
+import { IDirectorateDocument } from '@directorate/interfaces/directorate.interface';
+
+
+const directorateSchema = new Schema(
   {
     name: { type: String, required: true, unique: true },
     code: { type: String, required: true, unique: true },
@@ -11,9 +13,11 @@ const organizationSchema = new Schema(
     website: { type: String, required: false },
     description: { type: String, required: false, },
     avatar: { type: String, required: false },
+    organizationId: { type: mongoose.Types.ObjectId, ref: 'Organization' }
   },
   { timestamps: true, versionKey: false },
 );
 
-const OrganizationModel: Model<IOrganizationDocument> = model<IOrganizationDocument>('Organization', organizationSchema, 'Organization');
-export { OrganizationModel };
+
+const DirectorateModel: Model<IDirectorateDocument> = model<IDirectorateDocument>('Directorate', directorateSchema, 'Directorate');
+export { DirectorateModel };

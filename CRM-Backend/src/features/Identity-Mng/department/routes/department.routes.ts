@@ -1,9 +1,9 @@
 import express, { Router } from 'express';
 
-import { Create } from '@organization/controllers/department/create-department';
-import { Delete } from '@organization/controllers/department/delete-department';
-import { Get } from '@organization/controllers/department/get-department';
-import { Update } from '@organization/controllers/department/update-department';
+import { Create } from '@department/controllers/create-department';
+import { Delete } from '@department/controllers/delete-department';
+import { Get } from '@department/controllers/get-department';
+import { Update } from '@department/controllers/update-department';
 
 class DepartmentRoutes {
 

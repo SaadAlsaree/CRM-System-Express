@@ -1,5 +1,7 @@
 import mongoose, { model, Model, Schema } from 'mongoose';
-import { IDepartmentDocument } from '@organization/interfaces/organization.interface';
+
+import { IDepartmentDocument } from '@department/interfaces/department.interface';
+
 
 const departmentSchema = new Schema(
   {
@@ -8,7 +10,8 @@ const departmentSchema = new Schema(
     email: { type: String, required: false },
     phone: { type: String, required: false },
     description: { type: String, required: false, },
-    organization: { type: mongoose.Types.ObjectId, required: true }
+    organizationId: { type: mongoose.Types.ObjectId, ref: 'Organization' },
+    directorateId: { type: mongoose.Types.ObjectId, ref: 'Directorate' },
   },
   { timestamps: true, versionKey: false },
 );

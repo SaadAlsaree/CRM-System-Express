@@ -10,25 +10,41 @@ import { Helpers } from '@globals/helpers/helpers';
 import { IUserDocument } from '@user/interfaces/user.interface';
 import { userServices } from '@service/db/user.service';
 import { organizationService } from '@service/db/organization.service';
-import { IDepartmentDocument, IOrganizationDocument } from '@organization/interfaces/organization.interface';
+import { IOrganizationDocument } from '@organization/interfaces/organization.interface';
+import { departmentService } from '@service/db/department.service';
+import { IDepartmentDocument } from '@department/interfaces/department.interface';
+import { IDirectorateDocument } from '@directorate/interfaces/directorate.interface';
+import { directorateService } from '@service/db/directorate.service';
 
 
 export class Create {
   @joiValidation(registerSchema)
 
   public async Post(req: Request, res: Response): Promise<Response> {
-    const { userLogin, password, username, avatarColor, role, rank, organizationId, departmentId } = req.body;
+    const { userLogin, password, username, avatarColor, role, rank, organizationId, departmentId, directorateId } = req.body;
 
 
-    // check if organization exists
-    const organization: IOrganizationDocument = await organizationService.getOrganizationById(organizationId);
+    if (organizationId) {
+      // check if organization exists
+      const organization: IOrganizationDocument = await organizationService.getOrganizationById(organizationId);
 
-    if (!organization) {
-      return res.status(HTTP_STATUS.NOT_FOUND).json({ message: 'Organization not found' });
+      if (!organization) {
+        return res.status(HTTP_STATUS.NOT_FOUND).json({ message: 'Organization not found' });
+      }
     }
 
+    if (directorateId) {
+      // check if directorate exists
+      const directorate: IDirectorateDocument = await directorateService.getDirectorateById(directorateId);
+
+      if (!directorate) {
+        return res.status(HTTP_STATUS.NOT_FOUND).json({ message: 'Directorate not found' });
+      }
+    }
+
+
     // check if department exists
-    const department: IDepartmentDocument = await organizationService.getDepartmentById(departmentId);
+    const department: IDepartmentDocument = await departmentService.getDepartmentById(departmentId);
 
     if (!department) {
       return res.status(HTTP_STATUS.NOT_FOUND).json({ message: 'Department not found' });
@@ -55,7 +71,6 @@ export class Create {
       userLogin,
       username,
       uId,
-
     } as IUserDocument;
 
     // check if user already exists
@@ -70,15 +85,6 @@ export class Create {
 
     // create User
     await userServices.createUser(userToCreate);
-
-
-    // add user to organization
-    await organizationService.addUserToOrganization(organizationId);
-    // add user to department
-    await organizationService.addUserToDepartment(departmentId);
-
-
-
 
     return res.status(HTTP_STATUS.CREATED).json({ message: 'Auth created successfully' });
   }
