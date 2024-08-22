@@ -77,8 +77,15 @@ class OrganizationService {
     const users: IAuthDocument[] = await AuthModel.aggregate([
       { $match: { organizationId: new mongoose.Types.ObjectId(organizationId) } },
       { $match: userQuery },
-      { $lookup: { from: 'User', localField: 'authId', foreignField: '_id', as: 'user' } },
+      { $lookup: { from: 'User', localField: '_id', foreignField: 'authId', as: 'user' } },
       { $unwind: '$user' },
+      { $lookup: { from: 'Organization', localField: 'organizationId', foreignField: '_id', as: 'organization' } },
+      { $unwind: '$organization' },
+      { $lookup: { from: 'Department', localField: 'departmentId', foreignField: '_id', as: 'department' } },
+      { $unwind: '$department' },
+      { $lookup: { from: 'Directorate', localField: 'directorateId', foreignField: '_id', as: 'directorate' } },
+      { $unwind: '$directorate' },
+      { $lookup: { from: 'Rank', localField: 'rank', foreignField: '_id', as: 'rank' } },
       { $sort: { createdAt: -1 } },
       { $skip: skip },
       { $limit: limit },
@@ -96,6 +103,7 @@ class OrganizationService {
     return count;
   }
 
+
   private aggregateProjectUser() {
     return {
       _id: 1,
@@ -109,6 +117,8 @@ class OrganizationService {
       'department.name': 1,
       'organization._id': 1,
       'organization.name': 1,
+      'directorate._id': 1,
+      'directorate.name': 1,
       isActivated: 1,
       isDeleted: 1,
       avatarColor: 1,

@@ -32,7 +32,7 @@
         "@task/*":["src/features/tasks/*"],
         "@ticket/*":["src/features/ticket/*"],
         "@comment/*":["src/features/comments/*"],
-        "@notification/*":["src/features/notification/*"],
+        "@notification/*":["src/features/Identity-Mng/notification/*"],
         "@chat/*":["src/features/Identity-Mng/chat/*"],
         "@globals/*": ["src/shared/global/*"],
         "@service/*": ["src/shared/services/*"],

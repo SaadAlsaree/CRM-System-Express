@@ -67,6 +67,8 @@ class UserServices {
       { $unwind: '$user' },
       { $lookup: { from: 'Organization', localField: 'organizationId', foreignField: '_id', as: 'organization' } },
       { $unwind: '$organization' },
+      { $lookup: { from: 'Directorate', localField: 'directorateId', foreignField: '_id', as: 'directorate' } },
+      { $unwind: '$directorate' },
       { $lookup: { from: 'Department', localField: 'departmentId', foreignField: '_id', as: 'department' } },
       { $unwind: '$department' },
       { $sort: { createdAt: -1 } },
@@ -151,6 +153,8 @@ class UserServices {
       { $unwind: '$user' },
       { $lookup: { from: 'Organization', localField: 'organizationId', foreignField: '_id', as: 'organization' } },
       { $unwind: '$organization' },
+      { $lookup: { from: 'Directorate', localField: 'directorateId', foreignField: '_id', as: 'directorate' } },
+      { $unwind: '$directorate' },
       { $lookup: { from: 'Department', localField: 'departmentId', foreignField: '_id', as: 'department' } },
       { $unwind: '$department' },
       { $lookup: { from: 'Rank', localField: 'rank', foreignField: '_id', as: 'rank' } },
@@ -244,6 +248,8 @@ class UserServices {
       'department.name': 1,
       'organization._id': 1,
       'organization.name': 1,
+      'directorate._id': 1,
+      'directorate.name': 1,
       isActivated: 1,
       isDeleted: 1,
       avatarColor: 1,
@@ -264,6 +270,7 @@ class UserServices {
       'user.address': 1,
       'user.displayName': 1,
       'user.work': 1,
+
     };
   }
 

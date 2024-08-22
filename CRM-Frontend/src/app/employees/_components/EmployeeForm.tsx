@@ -33,9 +33,10 @@ type Props = {
    rankList?: any;
    roleList?: any;
    orgList?: any;
+   directorateList?: any;
 };
 
-const EmployeeForm = ({ employee, rankList, roleList, orgList }: Props) => {
+const EmployeeForm = ({ employee, rankList, roleList, orgList, directorateList }: Props) => {
    const [error, setError] = useState('');
    const [isSubmitting, setSubmitting] = useState(false);
    const [orgId, setOrgId] = useState<string>('');
@@ -50,6 +51,10 @@ const EmployeeForm = ({ employee, rankList, roleList, orgList }: Props) => {
    })) as Option[];
    const rankOptions: [] = rankList?.map((rank: Record<string, string>) => ({ label: rank.rankName, value: rank._id }));
    const orgOptions: [] = orgList?.organizations?.map((org: Record<string, string>) => ({ label: org.name, value: org._id }));
+   const directorateOptions: [] = directorateList?.Data?.map((directorate: Record<string, string>) => ({
+      label: directorate.name,
+      value: directorate._id
+   }));
 
    const form = useForm<addEmployeeData>({
       resolver: zodResolver(addEmployeeSchema),
@@ -226,7 +231,7 @@ const EmployeeForm = ({ employee, rankList, roleList, orgList }: Props) => {
                                  defaultValue={employee?.organization._id}
                                  render={({ field }) => (
                                     <FormItem>
-                                       <FormLabel>الدائرة أو المديرية :</FormLabel>
+                                       <FormLabel>الدائرة :</FormLabel>
                                        <Select
                                           onValueChange={(selectedOrgId) => {
                                              field.onChange(selectedOrgId);

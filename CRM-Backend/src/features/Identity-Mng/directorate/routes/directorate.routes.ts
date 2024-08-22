@@ -14,7 +14,7 @@ class DirectorateRoutes {
     // get all directorates by organization id
     this.router.get('/directorates/:organizationId', Get.prototype.InOrg);
     // get all directorates when no organization
-    this.router.get('/directorates', Get.prototype.directorates);
+    this.router.get('/all/directorates/:page', Get.prototype.directorates);
     // get directorate by id
     this.router.get('/directorate/:id/:page', Get.prototype.directorate);
     // create directorate

@@ -36,9 +36,9 @@ class OrgService {
         }
     }
 
-    public async getOrgById(id: string): Promise<any> {
+    public async getOrgById(id: string, page: number = 1): Promise<any> {
         try {
-            const response = await axios.get(`/organizations/${id}`, {
+            const response = await axios.get(`/organizations/${id}/${page}`, {
                 withCredentials: true
             })
             return response;
@@ -60,7 +60,7 @@ class OrgService {
 
     public async getUserCountInOrganization(id: string): Promise<any> {
         try {
-            const response = await axios.get(`/organizations/user-count/${id}`, {
+            const response = await axios.get(`/organization/user-count/${id}`, {
                 withCredentials: true
             })
             return response.data?.Total;

@@ -16,7 +16,7 @@ const DepartmentCard = ({ departmentInfo }: Props) => {
                <CardDescription>{departmentInfo.description}</CardDescription>
             </CardHeader>
             <CardContent>
-               <CardDescription>{departmentInfo.code}</CardDescription>
+               <CardDescription className='text-2xl text-cyan-500'>{departmentInfo.code}</CardDescription>
             </CardContent>
             <CardFooter className='flex justify-between -mb-6'>
                <Link href={`/departments/view/${departmentInfo._id}`}>

@@ -34,7 +34,7 @@ const ProfileHeader = ({ userData }: Props) => {
                </div>
             </div>
          </div>
-         <div className='flex  items-center ml-6'>
+         <div className='hidden lg:flex  items-center ml-6'>
             <div className='flex flex-col items-center'>
                <div className='items-center'>
                   <p className='text-xs font-bold text-white'>43</p>

@@ -19,6 +19,7 @@ import applicationRoutes from './routes';
 import { CustomError, IErrorResponse } from '@globals/helpers/error-handler';
 import { SocketIOUserHandler } from '@socket/user';
 import { SocketIOChatHandler } from '@socket/chat';
+import { SocketIONotificationHandler } from '@socket/notification';
 
 const log: Logger = config.createLogger('Server Setup');
 
@@ -148,7 +149,7 @@ export class M14Platform {
     // const socketIOFollowerHandler: SocketIOFollowerHandler = new SocketIOFollowerHandler(io);
     // const socketIOUserHandler: SocketIOUserHandler = new SocketIOUserHandler(io);
     // const socketIOChatHandler: SocketIOChatHandler = new SocketIOChatHandler(io);
-    // const socketIONotificationHandler: SocketIONotificationHandler = new SocketIONotificationHandler();
+    const socketIONotificationHandler: SocketIONotificationHandler = new SocketIONotificationHandler();
     // const socketIOImageHandler: SocketIOImageHandler = new SocketIOImageHandler();
     // const socketIOTaskHandler: SocketIOTaskHandler = new SocketIOTaskHandler();
 
@@ -158,7 +159,7 @@ export class M14Platform {
     // socketIOFollowerHandler.listen();
     // socketIOUserHandler.listen();
     // socketIOChatHandler.listen();
-    // socketIONotificationHandler.listen(io);
+    socketIONotificationHandler.listen(io);
     // socketIOImageHandler.listen(io);
     // socketIOTaskHandler.listen(io);
   }

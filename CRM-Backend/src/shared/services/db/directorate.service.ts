@@ -48,18 +48,27 @@ class DirectorateService {
 
     const directorate: IDirectorateDocument[] = await DirectorateModel.aggregate([
       { $match: { _id: new mongoose.Types.ObjectId(id) } },
+      { $lookup: { from: 'Organization', localField: 'organizationId', foreignField: '_id', as: 'organization' } },
+      { $unwind: '$organization' },
       { $lookup: { from: 'Department', localField: '_id', foreignField: 'directorateId', as: 'department' } },
     ]).exec();
 
     return directorate[0];
   }
 
-  // get all directorates if organizationId is null
-  public async getAllDirectorates(): Promise<IDirectorateDocument[]> {
-    const directorates: IDirectorateDocument[] = await DirectorateModel.find({ organizationId: null }).exec() as IDirectorateDocument[];
+  // get all directorates with pagination
+  public async getAllDirectorates(skip: number = 0, limit: number = 0): Promise<IDirectorateDocument[]> {
+    const directorates: IDirectorateDocument[] = await DirectorateModel.aggregate([
+      { $lookup: { from: 'Organization', localField: 'organizationId', foreignField: '_id', as: 'organization' } },
+      { $unwind: '$organization' },
+      { $sort: { createdAt: -1 } },
+      { $skip: skip },
+      { $limit: limit }
+    ]).exec();
 
     return directorates;
   }
+
   // git directorate count if organizationId is null
   public async getAllDirectorateCount(): Promise<number> {
     const count: number = await DirectorateModel.countDocuments().exec();
@@ -92,14 +101,21 @@ class DirectorateService {
       userQuery = { userLogin: search };
     }
     const users: IAuthDocument[] = await AuthModel.aggregate([
-      { $match: { directorateId: directorateId } },
-      { $match: { userLogin: userQuery } },
+      { $match: { directorateId: new mongoose.Types.ObjectId(directorateId) } },
+      { $match: userQuery },
       { $lookup: { from: 'User', localField: '_id', foreignField: 'authId', as: 'user' } },
       { $unwind: '$user' },
-      { $project: this.aggregateProjectUser() },
+      { $lookup: { from: 'Organization', localField: 'organizationId', foreignField: '_id', as: 'organization' } },
+      { $unwind: '$organization' },
+      { $lookup: { from: 'Department', localField: 'departmentId', foreignField: '_id', as: 'department' } },
+      { $unwind: '$department' },
+      { $lookup: { from: 'Directorate', localField: 'directorateId', foreignField: '_id', as: 'directorate' } },
+      { $unwind: '$directorate' },
+      { $lookup: { from: 'Rank', localField: 'rank', foreignField: '_id', as: 'rank' } },
       { $sort: { createdAt: -1 } },
       { $skip: skip },
       { $limit: limit },
+      { $project: this.aggregateProjectUser() }
     ]).exec();
 
 
@@ -129,6 +145,8 @@ class DirectorateService {
       'department.name': 1,
       'organization._id': 1,
       'organization.name': 1,
+      'directorate._id': 1,
+      'directorate.name': 1,
       isActivated: 1,
       isDeleted: 1,
       avatarColor: 1,

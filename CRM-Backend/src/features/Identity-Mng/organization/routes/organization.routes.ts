@@ -25,7 +25,7 @@ class OrganizationRoutes {
     // delete organization route
     this.router.delete('/organizations/:id', Delete.prototype.organization);
     // get user count of organization route
-    this.router.get('/organizations/user-count/:organizationId', Get.prototype.Count);
+    this.router.get('/organization/user-count/:organizationId', Get.prototype.CountOrg);
 
 
 

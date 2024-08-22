@@ -27,7 +27,7 @@ Accept: application/json
 withCredentials: true
 
 ###
-GET {{baseUrl}}/{{urlPath}}/organizations/66c36d33582b0827065a9415/3
+GET {{baseUrl}}/{{urlPath}}/organizations/66c36d33582b0827065a9415/1
 Content-Type: application/json
 Accept: application/json
 withCredentials: true
@@ -58,7 +58,7 @@ withCredentials: true
 
 
 ###
-GET {{baseUrl}}/{{urlPath}}/organizations/user-count/66c36d33582b0827065a9415
+GET {{baseUrl}}/{{urlPath}}/organization/user-count/66c36d33582b0827065a9415
 Content-Type: application/json
 Accept: application/json
 withCredentials: true

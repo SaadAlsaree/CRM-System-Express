@@ -1,8 +1,11 @@
 import React from 'react';
 import { DarkModeToggle } from './darkmode-toggle';
 import NavbarLogo from './navbar-logo';
-import { SlidersHorizontal } from 'lucide-react';
+import { Pi, SlidersHorizontal } from 'lucide-react';
 import UserSetting from './UserSetting';
+//icons
+import { MdOutlineNotifications } from 'react-icons/md';
+import { HiOutlineChatBubbleLeftEllipsis } from 'react-icons/hi2';
 
 type Props = {
    sidebarOpen: string | boolean | undefined;
@@ -23,12 +26,14 @@ const Navbar = ({ setSidebarOpen, sidebarOpen }: Props) => {
             </div>
             <NavbarLogo />
          </div>
-         <div className='flex gap-3'>
+         <div className='flex gap-3 items-center'>
             {/* <Search /> */}
 
             <span>
                <DarkModeToggle />
             </span>
+            <HiOutlineChatBubbleLeftEllipsis className='h-6 w-6 text-gray-500 dark:text-gray-300 cursor-pointer hover:text-primary duration-200 transition-colors' />
+            <MdOutlineNotifications className='h-6 w-6 text-gray-500 dark:text-gray-300 cursor-pointer hover:text-primary duration-200 transition-colors' />
             <UserSetting />
          </div>
       </nav>

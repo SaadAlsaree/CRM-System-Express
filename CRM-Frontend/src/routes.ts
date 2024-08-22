@@ -14,12 +14,12 @@ const items: ISidebarItem[] = [
       icon: Building2 as any,
       items: [
          {
-            name: 'الرئيسية',
+            name: 'الدوائر',
             path: '/organizations'
          },
          {
-            name: 'قائمة الدوائر و المديريات',
-            path: '/organizations/list'
+            name: 'المديريات',
+            path: '/directorates'
          },
       ]
    },

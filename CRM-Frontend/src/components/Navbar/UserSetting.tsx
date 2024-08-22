@@ -13,7 +13,7 @@ import { useRouter } from 'next/navigation';
 
 //services
 //icons
-import { LogOut, Settings } from 'lucide-react';
+import { CircleUser, LogOut, Settings } from 'lucide-react';
 
 const UserSetting = () => {
    const router = useRouter();
@@ -36,10 +36,11 @@ const UserSetting = () => {
    return (
       <DropdownMenu>
          <DropdownMenuTrigger asChild>
-            <Avatar>
-               <AvatarImage src='https://github.com/shadcn.png' />
+            <CircleUser className='h-6 w-6 text-gray-500 dark:text-gray-300 cursor-pointer hover:text-primary duration-200 transition-colors' />
+            {/* <Avatar>
+               <AvatarImage src='/user_96px.png' />
                <AvatarFallback>Saad</AvatarFallback>
-            </Avatar>
+            </Avatar> */}
          </DropdownMenuTrigger>
          <DropdownMenuContent align='end'>
             <DropdownMenuLabel className='text-right text-gray-500 dark:text-slate-200'>حسابي</DropdownMenuLabel>

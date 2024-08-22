@@ -62,6 +62,7 @@ export class Create {
       role,
       rank,
       organizationId,
+      directorateId,
       departmentId
     } as IAuthDocument;
 

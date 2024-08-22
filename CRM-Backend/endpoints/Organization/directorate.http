@@ -10,10 +10,10 @@ Accept: application/json
 withCredentials: true
 
 {
-    "name": "Organization 1",
-    "code": "ORG1",
+    "name": "مديرية الأتصالات",
+    "code": "ج-66",
     "phone": "123456789",
-    "email": "org-1@inns.com",
+    "email": "org-66@inns.com",
     "address": "123, Street, City, Country",
     "website": "http://localhost:3000",
     "avatar": "https://www.google.com",
@@ -23,7 +23,7 @@ withCredentials: true
 
 // get all directorates of no organization
 ###
-GET {{baseUrl}}/{{urlPath}}/directorates
+GET {{baseUrl}}/{{urlPath}}/all/directorates/1
 Content-Type: application/json
 Accept: application/json
 withCredentials: true

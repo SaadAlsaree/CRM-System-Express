@@ -12,10 +12,19 @@ const JobInfo = ({ jobInfo }: Props) => {
          </div>
          <dl className='-my-3 divide-y divide-gray-100 text-sm mt-4'>
             <div className='grid grid-cols-1 gap-1 py-3 sm:grid-cols-3 sm:gap-4'>
-               <dt className='font-medium text-gray-900 dark:text-white'>الدائرة أو المديرية :</dt>
+               <dt className='font-medium text-gray-900 dark:text-white'>الدائرة :</dt>
                <dd className='text-gray-700 sm:col-span-2'>
-                  <Badge variant='outline' className='px-4 py-1'>
+                  <Badge variant='outline' className='px-4 py-1 bg-blue-500 hover:bg-blue-400 text-white'>
                      {jobInfo?.organization?.name}
+                  </Badge>
+               </dd>
+            </div>
+
+            <div className='grid grid-cols-1 gap-1 py-3 sm:grid-cols-3 sm:gap-4'>
+               <dt className='font-medium text-gray-900 dark:text-white'>المديرية :</dt>
+               <dd className='text-gray-700 sm:col-span-2'>
+                  <Badge variant='outline' className='px-4 py-1 bg-cyan-500 hover:bg-cyan-400 text-white'>
+                     {jobInfo?.directorate?.name}
                   </Badge>
                </dd>
             </div>

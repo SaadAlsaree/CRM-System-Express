@@ -13,6 +13,7 @@ export const registerSchema: ObjectSchema = Joi.object({
   avatarColor: Joi.string().required(),
   role: Joi.array().items(Joi.string()).required(),
   rank: Joi.string().required(),
-  organizationId: Joi.string().required(),
+  organizationId: Joi.string().optional(),
+  directorateId: Joi.string().optional(),
   departmentId: Joi.string().optional(),
 });

@@ -33,21 +33,31 @@ withCredentials: true
     "description": "This is organization 1",
     "organizationId": "66c36d33582b0827065a9415"
 }
+
+// get all departments in directorate
 ###
-GET {{baseUrl}}/{{urlPath}}/departments/66c1f988407824318079beea
+GET {{baseUrl}}/{{urlPath}}/departments/directorate/66c37e3107b25d34b6823571
 Content-Type: application/json
 Accept: application/json
 withCredentials: true
 
+// get all departments in organization
 ###
-GET {{baseUrl}}/{{urlPath}}/department/669cfdc50cfdf01ad8744c94
+GET {{baseUrl}}/{{urlPath}}/departments/organization/66c37e3107b25d34b6823571
+Content-Type: application/json
+Accept: application/json
+withCredentials: true
+
+// get department by id
+###
+GET {{baseUrl}}/{{urlPath}}/department/66c37e3107b25d34b6823571
 Content-Type: application/json
 Accept: application/json
 withCredentials: true
 
 
 ###
-PUT {{baseUrl}}/{{urlPath}}/departments/66c37d4d6b1a19a48f5c6c4e
+PUT {{baseUrl}}/{{urlPath}}/departments/66c37e3107b25d34b6823571
 Content-Type: application/json
 Accept: application/json
 withCredentials: true

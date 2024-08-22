@@ -17,7 +17,7 @@ const ProfilePage = async () => {
             <ProfileHeader userData={currentUser?.data?.UserProfile} />
             <div className='mt-4'>
                <Tabs defaultValue='GeneralInfo' className='w-full'>
-                  <TabsList className='w-full'>
+                  <TabsList className='w-full overflow-scroll'>
                      <TabsTrigger value='GeneralInfo'>معلومات عامة</TabsTrigger>
                      <TabsTrigger value='JobInfo'>معلومات الوظيفة</TabsTrigger>
                      <TabsTrigger value='Settings'>إعدادت الحساب</TabsTrigger>

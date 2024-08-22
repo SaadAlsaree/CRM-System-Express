@@ -1,7 +1,6 @@
 import Link from 'next/link';
 
 import ProtectedPage from '@/components/ProtectedPage';
-import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import Pagination from '@/components/Pagination';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -16,13 +15,14 @@ import { Building2, FileDown, Filter, Plus, Search } from 'lucide-react';
 const columns: { label: string; value: any; className?: string }[] = [
    { label: 'الأسم', value: 'name', className: 'font-bold' },
    { label: 'الترميز', value: 'code', className: 'hidden md:table-cell font-bold' },
-   { label: 'المديرية', value: 'employees', className: 'hidden md:table-cell font-bold' },
+   { label: 'الدائرة', value: 'organization', className: 'hidden md:table-cell font-bold' },
+   { label: 'المديرية', value: 'directorate', className: 'hidden md:table-cell font-bold' },
    { label: 'القسم', value: 'address', className: 'hidden md:table-cell font-bold' },
    { label: 'الهاتف', value: 'phone', className: 'hidden md:table-cell font-bold' },
    { label: 'البريد الإلكتروني', value: 'email', className: 'hidden md:table-cell font-bold' },
    { label: 'حالة الموظف', value: 'isActivated', className: 'hidden md:table-cell font-bold' },
    // { label: 'الموقع الإلكتروني', value: 'website', className: 'hidden md:table-cell font-bold' },
-   { label: 'الإجراءات', value: 'actions', className: 'font-bold' }
+   { label: 'الإعدادات', value: 'actions', className: 'font-bold' }
 ];
 
 interface Props {

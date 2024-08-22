@@ -16,8 +16,9 @@ const authSchema = new Schema<IAuthDocument>({
   isDeleted: { type: Boolean, default: false },
   avatarColor: { type: String, required: true },
   username: { type: String, required: true },
-  organizationId: { type: Schema.Types.ObjectId, ref: 'Organization', required: true },
-  departmentId: { type: Schema.Types.ObjectId, ref: 'Department', required: true },
+  organizationId: { type: Schema.Types.ObjectId, ref: 'Organization' },
+  directorateId: { type: Schema.Types.ObjectId, ref: 'Directorate' },
+  departmentId: { type: Schema.Types.ObjectId, ref: 'Department' },
   passwordResetToken: { type: String, default: '' },
   passwordResetExpires: { type: Number },
 }, {
