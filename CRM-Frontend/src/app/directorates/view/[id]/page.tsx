@@ -1,15 +1,12 @@
-import Link from 'next/link';
-
 import ProtectedPage from '@/components/ProtectedPage';
 import { Card } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
 import { Divider } from '@/components';
 import DirectorateView from '../../_components/DirectorateView';
 import EmployeesTable from '@/app/employees/_components/EmployeesTable';
 //service
 import { directorateService } from '@/services/directorate/directorate.server.service';
-import DepartmentList from '@/app/organizations/_components/DepartmentList';
-import { Plus } from 'lucide-react';
+import DepartmentModel from '../../_components/DepartmentModel';
+import DepartmentList from '../../_components/DepartmentList';
 
 const columns: { label: string; value: any; className?: string }[] = [
    { label: 'الأسم', value: 'name', className: 'font-bold' },
@@ -42,7 +39,7 @@ const DirectorateViewPage = async ({ params }: Props) => {
                <Card>
                   <h1 className='text-2xl font-bold text-primary'>تفاصيل المديرية .</h1>
                   <Divider title='' />
-                  <DirectorateView directorate={directorate.Data} userCount={userCount} />
+                  <DirectorateView directorate={directorate?.Data} userCount={userCount} />
                </Card>
 
                <Card>
@@ -50,12 +47,7 @@ const DirectorateViewPage = async ({ params }: Props) => {
                      <h1 className='text-xl font-bold text-primary'>الأقسام .</h1>
                      {/* Add New Department */}
                      <div>
-                        <Button variant='outline'>
-                           <Link href={`/departments/create/${directorate?.Data?._id}`} className='ml-4'>
-                              إضافة قسم جديد
-                           </Link>
-                           <Plus className='h-10 text-primary' />
-                        </Button>
+                        <DepartmentModel directorateId={params.id} />
                      </div>
                   </div>
                   <Divider title='' />

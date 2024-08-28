@@ -15,9 +15,9 @@ axios.interceptors.request.use((config) => {
 class UserServerServices {
 
     // Get all Users
-    public async getAllUsers(page: number = 1, userLogin?: string, organizationId?: string, departmentId?: string): Promise<any> {
+    public async getAllUsers(page: number = 1, userLogin?: string, organizationId?: string): Promise<any> {
         try {
-            const response = await axios.get(`/users/all/${page}/query?userLogin=${userLogin}&organizationId=${organizationId}&departmentId=${departmentId}`);
+            const response = await axios.get(`/users/all/${page}/query?userLogin=${userLogin}&organizationId=${organizationId}`);
             return response;
         } catch (error) {
             console.log(error);

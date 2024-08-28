@@ -7,7 +7,6 @@ import {
    DropdownMenuSeparator,
    DropdownMenuTrigger
 } from '@/components/ui/dropdown-menu';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
 
@@ -45,12 +44,12 @@ const UserSetting = () => {
          <DropdownMenuContent align='end'>
             <DropdownMenuLabel className='text-right text-gray-500 dark:text-slate-200'>حسابي</DropdownMenuLabel>
             <DropdownMenuSeparator />
-            <DropdownMenuItem className='flex justify-between gap-1'>
+            <DropdownMenuItem className=' gap-2'>
                <Settings width='18' height='18' />
                الأعدادات
             </DropdownMenuItem>
             <DropdownMenuSeparator />
-            <DropdownMenuItem className='flex justify-between gap-1' onClick={logoutHandler}>
+            <DropdownMenuItem className='gap-2' onClick={logoutHandler}>
                <LogOut width='18' height='18' />
                تسجيل الخروج
             </DropdownMenuItem>

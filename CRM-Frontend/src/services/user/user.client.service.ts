@@ -3,6 +3,7 @@ import axios from '@/services/axios';
 class UserClientService {
     // create user
     public async createUser(data: any): Promise<any> {
+
         try {
             const response = await axios.post('/auth/new', data, {
                 withCredentials: true

@@ -8,7 +8,6 @@ import { useRouter } from 'next/navigation';
 //components
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import MultipleSelector, { Option } from '@/components/ui/multiple-selector';
 import { ErrorMessage, Skeleton, Spinner } from '@/components';
 import { Button } from '@/components/ui/button';
@@ -84,7 +83,6 @@ const EmployeeForm = ({ employee, rankList, roleList, orgList, directorateList }
             //create
             employeeData.avatarColor = UtilsService.avatarColor();
             employeeData.role = employeeData.role.map((r: any) => r.value);
-
             const response = await userClientService.createUser(employeeData);
 
             if (response.status === 201) {
@@ -98,6 +96,7 @@ const EmployeeForm = ({ employee, rankList, roleList, orgList, directorateList }
          }
       } catch (error) {
          setSubmitting(false);
+         console.log(error);
          setError('حدث خطأ غير متوقع.');
          toast({
             title: 'خطأ',
@@ -128,190 +127,178 @@ const EmployeeForm = ({ employee, rankList, roleList, orgList, directorateList }
    };
 
    return (
-      <Card className=' mx-4 2xl:mx-44 xl:mx-32 md:mx-10 mt-20'>
-         <CardHeader>
-            <CardTitle>تفاصيل الموظف</CardTitle>
-            <CardDescription>تاكد من بيانات الموظقف قبل الحفض .</CardDescription>
-         </CardHeader>
-         <CardContent>
-            <div className='my-6'>
-               {error && (
-                  <Alert variant='destructive'>
-                     <TriangleAlert className='h-4 w-4' />
-                     <AlertTitle>خطأ</AlertTitle>
-                     <AlertDescription>{error}</AlertDescription>
-                  </Alert>
-               )}
-               <div className='flex items-center'>
-                  <Form {...form}>
-                     <form onSubmit={onSubmit} className='w-full' autoComplete='off'>
-                        <div className='grid grid-cols-1 xl:grid-cols-2 gap-4 '>
-                           <div>
-                              <FormItem>
-                                 <FormLabel>ترمز الموظف :</FormLabel>
-                                 <Input {...form.register('userLogin')} type='text' />
-                                 <FormMessage>{errors.userLogin?.message}</FormMessage>
-                              </FormItem>
-                           </div>
-                           <div>
-                              <FormItem>
-                                 <FormLabel>كلمة المرور :</FormLabel>
-                                 <Input {...form.register('password')} type='password' />
-                                 <FormMessage>{errors.password?.message}</FormMessage>
-                              </FormItem>
-                           </div>
-                           <div>
-                              <FormItem>
-                                 <FormLabel>الأسم :</FormLabel>
-                                 <Input {...form.register('username')} type='text' />
-                                 <FormMessage>{errors.username?.message}</FormMessage>
-                              </FormItem>
-                           </div>
+      <div className='my-6'>
+         {error && (
+            <Alert variant='destructive'>
+               <TriangleAlert className='h-4 w-4' />
+               <AlertTitle>خطأ</AlertTitle>
+               <AlertDescription>{error}</AlertDescription>
+            </Alert>
+         )}
+         <div className='flex items-center'>
+            <Form {...form}>
+               <form onSubmit={onSubmit} className='w-full' autoComplete='off'>
+                  <div className='grid grid-cols-1 xl:grid-cols-2 gap-4 '>
+                     <div>
+                        <FormItem>
+                           <FormLabel>ترمز الموظف :</FormLabel>
+                           <Input {...form.register('userLogin')} type='text' />
+                           <FormMessage>{errors.userLogin?.message}</FormMessage>
+                        </FormItem>
+                     </div>
+                     <div>
+                        <FormItem>
+                           <FormLabel>كلمة المرور :</FormLabel>
+                           <Input {...form.register('password')} type='password' />
+                           <FormMessage>{errors.password?.message}</FormMessage>
+                        </FormItem>
+                     </div>
+                     <div>
+                        <FormItem>
+                           <FormLabel>الأسم :</FormLabel>
+                           <Input {...form.register('username')} type='text' />
+                           <FormMessage>{errors.username?.message}</FormMessage>
+                        </FormItem>
+                     </div>
 
-                           <div>
-                              <FormField
-                                 control={form.control}
-                                 name='rank'
-                                 defaultValue={employee?.rank._id}
-                                 render={({ field }) => (
-                                    <FormItem>
-                                       <FormLabel>الرتبة :</FormLabel>
-                                       <Select onValueChange={field.onChange} name='rank' defaultValue={employee?.rank._id}>
-                                          <SelectTrigger>
-                                             <SelectValue placeholder='الرتبة' />
-                                          </SelectTrigger>
-                                          <SelectContent>
-                                             {rankOptions?.map((rank: any) => (
-                                                <SelectItem key={rank.value} value={rank.value}>
-                                                   {rank.label}
-                                                </SelectItem>
-                                             ))}
-                                          </SelectContent>
-                                       </Select>
+                     <div>
+                        <FormField
+                           control={form.control}
+                           name='rank'
+                           defaultValue={employee?.rank._id}
+                           render={({ field }) => (
+                              <FormItem>
+                                 <FormLabel>الرتبة :</FormLabel>
+                                 <Select onValueChange={field.onChange} name='rank' defaultValue={employee?.rank._id}>
+                                    <SelectTrigger>
+                                       <SelectValue placeholder='الرتبة' />
+                                    </SelectTrigger>
+                                    <SelectContent>
+                                       {rankOptions?.map((rank: any) => (
+                                          <SelectItem key={rank.value} value={rank.value}>
+                                             {rank.label}
+                                          </SelectItem>
+                                       ))}
+                                    </SelectContent>
+                                 </Select>
 
-                                       <FormMessage />
-                                    </FormItem>
-                                 )}
-                              ></FormField>
-                           </div>
+                                 <FormMessage />
+                              </FormItem>
+                           )}
+                        ></FormField>
+                     </div>
 
-                           <div className='col-span-2'>
-                              {roleList?.data && (
-                                 <FormField
-                                    control={form.control}
-                                    name='role'
-                                    // defaultValue={user?.role}
-                                    render={({ field }) => (
-                                       <FormItem>
-                                          <FormLabel>الصلاحيات</FormLabel>
-                                          <FormControl>
-                                             <MultipleSelector
-                                                options={roleOptions}
-                                                value={field.value}
-                                                onChange={field.onChange}
-                                                // defaultOptions={roleDefault}
-                                                placeholder='حدد صلاحيات المستخدم...'
-                                                emptyIndicator={
-                                                   <p className='text-center text-lg leading-10 text-gray-600 dark:text-gray-400'>
-                                                      لم يتم العثور على نتائج.
-                                                   </p>
-                                                }
-                                             />
-                                          </FormControl>
-                                          <FormMessage />
-                                       </FormItem>
-                                    )}
-                                 />
+                     <div className='col-span-2'>
+                        {roleList?.data && (
+                           <FormField
+                              control={form.control}
+                              name='role'
+                              // defaultValue={user?.role}
+                              render={({ field }) => (
+                                 <FormItem>
+                                    <FormLabel>الصلاحيات</FormLabel>
+                                    <FormControl>
+                                       <MultipleSelector
+                                          options={roleOptions}
+                                          value={field.value}
+                                          onChange={field.onChange}
+                                          // defaultOptions={roleDefault}
+                                          placeholder='حدد صلاحيات المستخدم...'
+                                          emptyIndicator={
+                                             <p className='text-center text-lg leading-10 text-gray-600 dark:text-gray-400'>
+                                                لم يتم العثور على نتائج.
+                                             </p>
+                                          }
+                                       />
+                                    </FormControl>
+                                    <FormMessage />
+                                 </FormItem>
                               )}
-                           </div>
-                           <div>
-                              <FormField
-                                 control={form.control}
-                                 name='organizationId'
-                                 defaultValue={employee?.organization._id}
-                                 render={({ field }) => (
-                                    <FormItem>
-                                       <FormLabel>الدائرة :</FormLabel>
-                                       <Select
-                                          onValueChange={(selectedOrgId) => {
-                                             field.onChange(selectedOrgId);
-                                             handleOrgChange(selectedOrgId);
-                                          }}
-                                          name='organizationId'
-                                          defaultValue={employee?.organization._id}
-                                       >
-                                          <SelectTrigger>
-                                             <SelectValue placeholder='الدائرة' />
-                                          </SelectTrigger>
-                                          <SelectContent>
-                                             {orgOptions?.map((org: any) => (
-                                                <SelectItem key={org.value} value={org.value}>
-                                                   {org.label}
-                                                </SelectItem>
-                                             ))}
-                                          </SelectContent>
-                                       </Select>
+                           />
+                        )}
+                     </div>
 
-                                       <FormMessage />
-                                    </FormItem>
-                                 )}
-                              ></FormField>
-                           </div>
+                     <div className='w-full'>
+                        <FormField
+                           control={form.control}
+                           name='organizationId'
+                           defaultValue={employee?.organization._id}
+                           render={({ field }) => (
+                              <FormItem>
+                                 <FormLabel>الدائرة :</FormLabel>
+                                 <Select
+                                    onValueChange={(selectedOrgId) => {
+                                       field.onChange(selectedOrgId);
+                                       handleOrgChange(selectedOrgId);
+                                    }}
+                                    name='organizationId'
+                                    defaultValue={employee?.organization._id}
+                                 >
+                                    <SelectTrigger>
+                                       <SelectValue placeholder='الدائرة' />
+                                    </SelectTrigger>
+                                    <SelectContent>
+                                       {orgOptions?.map((org: any) => (
+                                          <SelectItem key={org.value} value={org.value}>
+                                             {org.label}
+                                          </SelectItem>
+                                       ))}
+                                    </SelectContent>
+                                 </Select>
 
-                           <div>
-                              <FormField
-                                 control={form.control}
-                                 name='departmentId'
-                                 defaultValue={employee?.department._id}
-                                 render={({ field }) => (
-                                    <FormItem>
-                                       <FormLabel>القسم :</FormLabel>
-                                       <Select
-                                          onValueChange={field.onChange}
-                                          name='departmentId'
-                                          defaultValue={employee?.department._id}
-                                          disabled={department}
-                                       >
-                                          <SelectTrigger>
-                                             <SelectValue placeholder='القسم' />
-                                          </SelectTrigger>
-                                          <SelectContent>
-                                             {departmentOptions?.map((department: any) => (
-                                                <SelectItem key={department.value} value={department.value}>
-                                                   {department.label}
-                                                </SelectItem>
-                                             ))}
-                                          </SelectContent>
-                                       </Select>
+                                 <FormMessage />
+                              </FormItem>
+                           )}
+                        ></FormField>
+                     </div>
 
-                                       <FormMessage />
-                                    </FormItem>
-                                 )}
-                              ></FormField>
-                           </div>
-                        </div>
+                     <div className='w-full'>
+                        <FormField
+                           control={form.control}
+                           name='directorateId'
+                           defaultValue={employee?.organization._id}
+                           render={({ field }) => (
+                              <FormItem>
+                                 <FormLabel>المديرية :</FormLabel>
+                                 <Select onValueChange={field.onChange} name='directorateId' defaultValue={employee?.directorate._id}>
+                                    <SelectTrigger>
+                                       <SelectValue placeholder='المديرية' />
+                                    </SelectTrigger>
+                                    <SelectContent>
+                                       {directorateOptions?.map((directorate: any) => (
+                                          <SelectItem key={directorate.value} value={directorate.value}>
+                                             {directorate.label}
+                                          </SelectItem>
+                                       ))}
+                                    </SelectContent>
+                                 </Select>
 
-                        {/* Button */}
-                        <div className='flex gap-3 mt-10 justify-between'>
-                           <div className='flex flex-row gap-4'>
-                              {/* <Button variant='outline'>إلغاء</Button> */}
-                              <Button disabled={isSubmitting}>
-                                 {isSubmitting ? (
-                                    <>
-                                       <p className='ml-2'>حفظ البيانات</p> <Spinner />
-                                    </>
-                                 ) : (
-                                    'حفظ البيانات'
-                                 )}
-                              </Button>
-                           </div>
-                        </div>
-                     </form>
-                  </Form>
-               </div>
-            </div>
-         </CardContent>
-      </Card>
+                                 <FormMessage />
+                              </FormItem>
+                           )}
+                        ></FormField>
+                     </div>
+                  </div>
+
+                  {/* Button */}
+                  <div className='flex gap-3 mt-10 justify-between'>
+                     <div className='flex flex-row gap-4'>
+                        {/* <Button variant='outline'>إلغاء</Button> */}
+                        <Button disabled={isSubmitting}>
+                           {isSubmitting ? (
+                              <>
+                                 <p className='ml-2'>حفظ البيانات</p> <Spinner />
+                              </>
+                           ) : (
+                              'حفظ البيانات'
+                           )}
+                        </Button>
+                     </div>
+                  </div>
+               </form>
+            </Form>
+         </div>
+      </div>
    );
 };
 

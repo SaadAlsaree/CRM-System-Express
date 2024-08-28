@@ -20,7 +20,7 @@ const EditOrganization = async ({ params }: Props) => {
                <Building className='h-8 w-8 text-primary' />
             </div>
             <Divider title='' />
-            <OrganizationForm organization={data.data.organization} />
+            <OrganizationForm organization={data.data.Organization} />
          </Card>
       </ProtectedPage>
    );

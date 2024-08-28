@@ -15,5 +15,5 @@ export const registerSchema: ObjectSchema = Joi.object({
   rank: Joi.string().required(),
   organizationId: Joi.string().optional(),
   directorateId: Joi.string().optional(),
-  departmentId: Joi.string().optional(),
+  departmentId: Joi.string().optional().allow(null),
 });

@@ -142,7 +142,7 @@ const GeneralInfo = ({ userInfo, isCurrentUser }: Props) => {
 
                   <div className='grid grid-cols-1 gap-1 p-3 even:bg-gray-50 sm:grid-cols-3 sm:gap-4 items-center'>
                      <dt className='font-medium '>الدائرة أو المديرية :</dt>
-                     <dd className='sm:col-span-2'>{userInfo?.organization.name}</dd>
+                     <dd className='sm:col-span-2'>{userInfo?.organization?.name}</dd>
                   </div>
 
                   <div className='grid grid-cols-1 gap-1 p-3 even:bg-gray-50 sm:grid-cols-3 sm:gap-4 dark:bg-gray-900'>

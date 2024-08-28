@@ -11,8 +11,6 @@ import { IUserDocument } from '@user/interfaces/user.interface';
 import { userServices } from '@service/db/user.service';
 import { organizationService } from '@service/db/organization.service';
 import { IOrganizationDocument } from '@organization/interfaces/organization.interface';
-import { departmentService } from '@service/db/department.service';
-import { IDepartmentDocument } from '@department/interfaces/department.interface';
 import { IDirectorateDocument } from '@directorate/interfaces/directorate.interface';
 import { directorateService } from '@service/db/directorate.service';
 
@@ -44,11 +42,11 @@ export class Create {
 
 
     // check if department exists
-    const department: IDepartmentDocument = await departmentService.getDepartmentById(departmentId);
+    // const department: IDepartmentDocument = await departmentService.getDepartmentById(departmentId);
 
-    if (!department) {
-      return res.status(HTTP_STATUS.NOT_FOUND).json({ message: 'Department not found' });
-    }
+    // if (!department) {
+    //   return res.status(HTTP_STATUS.NOT_FOUND).json({ message: 'Department not found' });
+    // }
     // auth data
     const uId = `${Helpers.generateRandomIntegers(12)}`;
     const authId = new ObjectId();

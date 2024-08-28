@@ -12,20 +12,13 @@ import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { addOrganizationSchema } from '@/schema/organization.schema';
 import { useToast } from '@/components/ui/use-toast';
 import { TriangleAlert } from 'lucide-react';
-import { Form, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
+import { Form, FormItem, FormLabel } from '@/components/ui/form';
 import { Textarea } from '@/components/ui/textarea';
 import { Input } from '@/components/ui/input';
 import { ErrorMessage, Spinner } from '@/components';
 import { Button } from '@/components/ui/button';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 
 type addOrganizationData = z.infer<typeof addOrganizationSchema>;
-
-const OrganizationType = [
-   { label: 'دائرة', value: 'A' },
-   { label: 'مديرية', value: 'B' },
-   { label: 'أخرى', value: 'Other' }
-];
 
 type Props = {
    organization?: any;
@@ -42,7 +35,6 @@ const OrganizationForm = ({ organization }: Props) => {
          ? {
               name: organization.name,
               code: organization.code,
-              type: organization.type,
               email: organization.email,
               phone: organization.phone,
               address: organization.address,
@@ -62,7 +54,7 @@ const OrganizationForm = ({ organization }: Props) => {
             const response = await orgClientService.updateOrgFromClient(JSON.stringify(OrgData), organization._id);
 
             if (response.status === 200) {
-               router.push('/organizations/list');
+               router.push('/organizations');
 
                toast({
                   title: 'تم التحديث',
@@ -75,7 +67,7 @@ const OrganizationForm = ({ organization }: Props) => {
             const response = await orgClientService.createOrgFromClient(JSON.stringify(OrgData));
 
             if (response.status === 201) {
-               router.push('/organizations/list');
+               router.push('/organizations');
                toast({
                   title: 'تم الإضافة',
                   description: 'تمت إضافة البيانات بنجاح.',
@@ -122,31 +114,6 @@ const OrganizationForm = ({ organization }: Props) => {
                            <ErrorMessage>{errors.code?.message}</ErrorMessage>
                         </FormItem>
                      </div>
-                  </div>
-                  <div className='mt-4'>
-                     <FormField
-                        control={form.control}
-                        name='type'
-                        defaultValue={organization?.type}
-                        render={({ field }) => (
-                           <FormItem>
-                              <FormLabel>النوع دائرة أو مديرية :</FormLabel>
-                              <Select onValueChange={field.onChange} name='priorityBook' defaultValue={organization?.type}>
-                                 <SelectTrigger>
-                                    <SelectValue placeholder='النوع' />
-                                 </SelectTrigger>
-                                 <SelectContent>
-                                    {OrganizationType?.map((option) => (
-                                       <SelectItem key={option.value} value={option.value}>
-                                          {option.label}
-                                       </SelectItem>
-                                    ))}
-                                 </SelectContent>
-                              </Select>
-                              <FormMessage />
-                           </FormItem>
-                        )}
-                     ></FormField>
                   </div>
 
                   <div className='mt-4 grid grid-cols-1 xl:grid-cols-2 gap-4'>

@@ -1,5 +1,4 @@
 import Link from 'next/link';
-
 import ProtectedPage from '@/components/ProtectedPage';
 import Pagination from '@/components/Pagination';
 import { Card } from '@/components/ui/card';
@@ -10,7 +9,11 @@ import EmployeeFilter from '../_components/EmployeeFilter';
 import { userServerService } from '@/services/user/user.server.service';
 import { orgService } from '@/services/organization/org.server.service';
 //Icons
-import { Building2, FileDown, Filter, Plus, Search } from 'lucide-react';
+import { FileDown, Users2 } from 'lucide-react';
+import EmployeeModel from '../_components/EmployeeModel';
+import { roleServerService } from '@/services/role/role.server.service';
+import { rankServerService } from '@/services/rank/rank.server.service';
+import { directorateService } from '@/services/directorate/directorate.server.service';
 
 const columns: { label: string; value: any; className?: string }[] = [
    { label: 'الأسم', value: 'name', className: 'font-bold' },
@@ -37,7 +40,10 @@ const EmployeesListPage = async ({ searchParams }: Props) => {
    const departmentId = searchParams.department || '';
 
    const orgList = await orgService.getOrgs();
-   const userList = await userServerService.getAllUsers(page, userLogin, organizationId, departmentId);
+   const userList = await userServerService.getAllUsers(page, userLogin, organizationId);
+   const roleList = await roleServerService.getRoles();
+   const rankList = await rankServerService.getRanks();
+   const directorateList = await directorateService.getDirectorates();
 
    return (
       <ProtectedPage>
@@ -45,7 +51,7 @@ const EmployeesListPage = async ({ searchParams }: Props) => {
             <Card>
                <div className='flex justify-between items-center mt-2 mb-6'>
                   <div className='flex flex-row gap-2'>
-                     <Building2 className='text-primary' />
+                     <Users2 className='text-primary' />
                      <div className='ml'>
                         <h1 className='text-2xl text-primary'>الموظفين</h1>
                         <h1 className='text-base text-muted-foreground'>قائمة موظفي الدوائر و المديريات جهاز الأمن الوطني .</h1>
@@ -53,18 +59,6 @@ const EmployeesListPage = async ({ searchParams }: Props) => {
                   </div>
 
                   <div className='flex flex-row items-center gap-2'>
-                     {/* <Popover>
-                        <PopoverTrigger className='w-full'>
-                           <div className='border rounded-md px-4 py-[7px] flex items-center gap-4'>
-                              <h1 className='text-muted-foreground'>فلترة</h1>
-                              <Filter className=' text-muted-foreground' />
-                           </div>
-                        </PopoverTrigger>
-                        <PopoverContent className='w-full'>
-                           <EmployeeFilter orgList={orgList} />
-                        </PopoverContent>
-                     </Popover> */}
-                     {/* Filter */}
                      <EmployeeFilter orgList={orgList} />
 
                      <Button variant='outline'>
@@ -75,13 +69,7 @@ const EmployeesListPage = async ({ searchParams }: Props) => {
                         <FileDown className='h-10 text-green-600' />
                      </Button>
 
-                     <Button variant='outline'>
-                        <Link href='/employees/create' className='ml-4'>
-                           إضافة جديدة
-                        </Link>
-
-                        <Plus className='h-10 text-primary' />
-                     </Button>
+                     <EmployeeModel orgList={orgList} rankList={rankList} roleList={roleList} directorateList={directorateList} />
                   </div>
                </div>
                <EmployeesTable columns={columns} searchParams={searchParams} userData={userList?.data.users} />

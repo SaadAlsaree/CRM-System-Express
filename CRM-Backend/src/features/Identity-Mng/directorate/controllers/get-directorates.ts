@@ -39,8 +39,6 @@ export class Get {
   public async directorate(req: Request, res: Response): Promise<void> {
     const { id, page } = req.params;
 
-    console.log('test');
-
     const search: string = req.query.userLogin as string || '';
     const userLogin = new RegExp(Helpers.escapeRegex(search), 'i');
     const skip: number = (parseInt(page) - 1) * PAGE_SIZE;

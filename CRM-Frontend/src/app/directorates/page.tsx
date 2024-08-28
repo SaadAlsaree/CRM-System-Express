@@ -43,7 +43,7 @@ const DirectoratesPage = async ({ searchParams }: Props) => {
                      {/* <Button variant='outline'>فلتر</Button> */}
 
                      <Button variant='outline'>
-                        <Link href='/directorate/create' className='ml-4'>
+                        <Link href='/directorates/create' className='ml-4'>
                            إضافة جديدة
                         </Link>
 

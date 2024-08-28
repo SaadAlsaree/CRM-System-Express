@@ -11,21 +11,7 @@ import {
    DropdownMenuSeparator,
    DropdownMenuTrigger
 } from '@/components/ui/dropdown-menu';
-import {
-   Cloud,
-   Github,
-   Lock,
-   LifeBuoy,
-   LogOut,
-   Plus,
-   Settings,
-   ShieldCheck,
-   ShieldMinus,
-   User,
-   Users,
-   Building2,
-   Building
-} from 'lucide-react';
+import { Lock, LifeBuoy, LogOut, Plus, Settings, ShieldCheck, ShieldMinus, User, Users, Building2, Building, UserCog } from 'lucide-react';
 //services
 import { userClientService } from '@/services/user/user.client.service';
 
@@ -80,7 +66,7 @@ const EmployeeAction = ({ employeeId, isActivated }: Props) => {
                </DropdownMenuItem>
                <Link href={`/employees/edit/${employeeId}`}>
                   <DropdownMenuItem>
-                     <Settings className='mr-2 h-4 w-4' />
+                     <UserCog className='mr-2 h-4 w-4' />
                      <span className='mr-2'>تعديل</span>
                   </DropdownMenuItem>
                </Link>
@@ -106,23 +92,6 @@ const EmployeeAction = ({ employeeId, isActivated }: Props) => {
                </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>
-               <Github className='mr-2 h-4 w-4' />
-               <span className='mr-2'>GitHub</span>
-            </DropdownMenuItem>
-            <DropdownMenuItem>
-               <LifeBuoy className='mr-2 h-4 w-4' />
-               <span className='mr-2'>Support</span>
-            </DropdownMenuItem>
-            <DropdownMenuItem>
-               <Cloud className='mr-2 h-4 w-4' />
-               <span className='mr-2'>API</span>
-            </DropdownMenuItem>
-            <DropdownMenuSeparator />
-            <DropdownMenuItem>
-               <LogOut className='mr-2 h-4 w-4' />
-               <span className='mr-2'>Log out</span>
-            </DropdownMenuItem>
          </DropdownMenuContent>
       </DropdownMenu>
    );

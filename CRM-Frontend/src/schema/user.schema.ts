@@ -21,7 +21,8 @@ export const addEmployeeSchema = z.object({
     username: z.string().min(3, 'هذا الحقل أجباري !').max(255),
     role: z.array(optionSchema).min(1, 'يجب تحديد صلاحيات المستخدم  !'),
     rank: z.string().min(3, 'هذا الحقل أجباري !').max(255),
-    organizationId: z.string().min(3, 'هذا الحقل أجباري !').max(255),
+    organizationId: z.string().optional(),
+    directorateId: z.string().optional(),
     departmentId: z.string().optional(),
 });
 
