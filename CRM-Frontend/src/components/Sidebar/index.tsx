@@ -8,6 +8,10 @@ interface SidebarProps {
    sidebarOpen: boolean;
    setSidebarOpen: (arg: boolean) => void;
 }
+
+// Roles
+const roles = ['admin', 'employee'];
+
 const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
    const trigger = useRef<any>(null);
    const sidebar = useRef<any>(null);
@@ -45,9 +49,10 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
          document.querySelector('body')?.classList.remove('sidebar-expanded');
       }
    }, [sidebarExpanded]);
+
    return (
       <nav
-         className={`absolute right-0 h-screen z-10 flex w-64 flex-col bg-slate-50 overflow-y-hidden border-l duration-200 ease-linear dark:border-gray-700 dark:bg-slate-900 lg:translate-x-0 lg:static  ${
+         className={`absolute right-0 h-screen z-10 flex w-64 flex-col bg-white overflow-y-hidden border-l duration-200 ease-linear dark:border-gray-700 dark:bg-slate-900 lg:translate-x-0 lg:static  ${
             sidebarOpen ? 'translate-x-0' : 'translate-x-full'
          }`}
       >
@@ -62,15 +67,14 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                >
                   icon
                </div>
+            </div>
+            logo
+            <div className='md:flex-col md:min-w-full flex flex-col  p-3 grow'>
+               {items.map((item, index) => roles.includes(item.permission) && <SidebarItem key={index} item={item} />)}
+            </div>
+            <div className='mb-2 mx-2'>
                <UserItem />
             </div>
-
-            <div className='md:flex-col md:min-w-full flex flex-col  p-3 grow'>
-               {items.map((item, index) => (
-                  <SidebarItem key={index} item={item} />
-               ))}
-            </div>
-            <div>Settings / Notification</div>
          </div>
       </nav>
    );

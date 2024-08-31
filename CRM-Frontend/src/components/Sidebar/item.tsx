@@ -6,6 +6,7 @@ import { usePathname, useRouter } from 'next/navigation';
 import { ISidebarItem } from '@/types/navigation.routes';
 import SubMenuItem from './sub-item';
 
+const roles = ['employee', 'admin'];
 const SidebarItem = ({ item }: { item: ISidebarItem }) => {
    const { name, icon: Icon, items, path } = item;
    const [expanded, setExpanded] = useState(false);
@@ -46,9 +47,7 @@ const SidebarItem = ({ item }: { item: ISidebarItem }) => {
          </div>
          {expanded && items && items.length > 0 && (
             <div className='flex flex-col space-y-1 ml-10'>
-               {items.map((item) => (
-                  <SubMenuItem key={item.path} item={item} />
-               ))}
+               {items.map((item) => roles.includes(item.permission) && <SubMenuItem key={item.path} item={item} />)}
             </div>
          )}
       </>

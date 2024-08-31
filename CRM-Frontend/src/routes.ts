@@ -1,51 +1,90 @@
-import { Home, Building2, Users, MessageCircleMore } from 'lucide-react';
+import { Home, Building2, Users, MessageCircleMore, CircleCheckBig, CalendarDays, Ticket, Mail } from 'lucide-react';
+import { PiSuitcaseSimpleBold } from "react-icons/pi";
+import { PiMegaphoneSimpleBold } from "react-icons/pi";
 import { ISidebarItem } from './types/navigation.routes';
+
 
 
 const items: ISidebarItem[] = [
    {
       name: 'الرئيسية',
       path: '/',
-      icon: Home as any
+      icon: Home as any,
+      permission: 'employee'
    },
    {
-      name: 'الدوائر و المديريات',
-      path: '/organizations',
+      name: 'القضايا',
+      path: '/cases',
+      icon: PiSuitcaseSimpleBold as any,
+      permission: 'employee'
+   },
+   {
+      name: 'المهام',
+      path: '/tasks',
+      icon: CircleCheckBig as any,
+      permission: 'employee'
+   },
+   {
+      name: 'الأحداث',
+      path: '/events',
+      icon: CalendarDays as any,
+      permission: 'employee'
+   },
+   {
+      name: 'الأعمامات',
+      path: '/announcements',
+      icon: PiMegaphoneSimpleBold as any,
+      permission: 'employee'
+   },
+   {
+      name: 'التذاكر',
+      path: '/tickets',
+      icon: Ticket as any,
+      permission: 'employee'
+   },
+   {
+      name: 'البريد الألكتروني',
+      path: '/emails',
+      icon: Mail as any,
+      permission: 'employee'
+   },
+   {
+      name: 'الموارد البشرية',
+      path: '/hrm',
       icon: Building2 as any,
+      permission: 'admin',
       items: [
          {
             name: 'الدوائر',
-            path: '/organizations'
+            path: '/hrm/organizations',
+            permission: 'admin'
          },
          {
             name: 'المديريات',
-            path: '/directorates'
+            path: '/hrm/directorates',
+            permission: 'admin'
          },
-      ]
-   },
-   {
-      name: 'الموظفين',
-      path: '/employees',
-      icon: Users as any,
-      items: [
          {
-            name: 'الرئيسية',
-            path: '/employees',
-         }, {
             name: 'قائمة الموظفين',
-            path: '/employees/list',
+            path: '/hrm/employees',
+            permission: 'admin'
          },
-         {
-            name: 'إضافة موظف جديد',
-            path: '/employees/create',
-         }
       ]
    },
 
    {
+      name: 'التذاكر',
+      path: '/tickets',
+      icon: Ticket as any,
+      permission: 'employee'
+   },
+
+
+   {
       name: 'المحادثات',
       path: '/chat',
-      icon: MessageCircleMore as any
+      icon: MessageCircleMore as any,
+      permission: 'employee'
    }
 
 ];

@@ -13,7 +13,7 @@ type Props = {
 };
 const Navbar = ({ setSidebarOpen, sidebarOpen }: Props) => {
    return (
-      <nav className='sticky top-0 lg:z-50 flex w-full items-center justify-between border-b bg-background/95 p-4 backdrop-blur supports-[backdrop-filter]:bg-background/60'>
+      <nav className='sticky top-0 lg:z-50 flex w-full items-center justify-between border-b bg-white p-4 backdrop-blur supports-[backdrop-filter]:bg-background/60'>
          <div className='flex items-center gap-6'>
             <div
                className='lg:hidden'
