@@ -5,7 +5,7 @@ import { eventsData } from '@/lib/data';
 
 const EventPage = () => {
    return (
-      <div>
+      <div className=' bg-white rounded-md p-4 dark:bg-gray-900'>
          <div className='my-4 flex items-center justify-between gap-4'>
             <div className='flex items-center gap-2'>
                <div className='rounded-xl bg-amber-500 p-3 text-white '>
@@ -21,7 +21,7 @@ const EventPage = () => {
             </div>
          </div>
 
-         <div className='h-[800px] bg-white rounded-md p-2 dark:bg-gray-900'>
+         <div className='h-[800px]'>
             <BigCalender Events={eventsData} />
          </div>
       </div>
