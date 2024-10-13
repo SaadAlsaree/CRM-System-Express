@@ -9,11 +9,11 @@ import SuspenseLoading from '@/components/loadings/suspense';
 
 export default async function Home() {
    return (
-      <Suspense fallback={<SuspenseLoading />}>
-         <ProtectedPage>
+      <ProtectedPage>
+         <Suspense fallback={<SuspenseLoading />}>
             <div className='p-4 flex gap-4 flex-col md:flex-row'>
                {/* lift */}
-               <div className='w-full lg:w-2/3 flex flex-col gap-6'>
+               <div className='w-full lg:w-3/4 flex flex-col gap-6'>
                   {/* User Card */}
                   <div className='flex justify-between gap-4 flex-wrap'>
                      <ProjectCard title='كل القضايا' description='320' />
@@ -25,7 +25,7 @@ export default async function Home() {
                   {/* Middle Charts */}
                   <div className=' flex gap-4 flex-col lg:flex-row'>
                      {/* Count Chart */}
-                     <div className='w-full lg:w-1/3 h-'>{/* <CountChart /> */}</div>
+                     <div className='w-full lg:w-1/4 h-'>{/* <CountChart /> */}</div>
 
                      {/* Attendance Chart */}
                      <div className='w-full lg:w-2/3 h-'>{/* <AttendanceChart /> */}</div>
@@ -35,12 +35,14 @@ export default async function Home() {
                </div>
 
                {/* right */}
-               <div className='w-full lg:w-1/3 flex flex-col gap-8'>
+               <div className='w-full lg:w-1/4 flex flex-col gap-8'>
                   {/* <EventCalender />
+                  
             <Announcements /> */}
+                  Notifications
                </div>
             </div>
-         </ProtectedPage>
-      </Suspense>
+         </Suspense>
+      </ProtectedPage>
    );
 }

@@ -106,7 +106,7 @@ withCredentials: true
 
 // update user is active authId
 ###
-PUT  {{baseUrl}}/{{urlPath}}/users/update/active/66c4afaf7aefa4feca82ac75
+PUT  {{baseUrl}}/{{urlPath}}/users/update/active/66e2de4d5f33f43d83f7adbb
 Content-Type: application/json
 Accept: application/json
 withCredentials: true

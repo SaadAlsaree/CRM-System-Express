@@ -10,14 +10,14 @@ Accept: application/json
 withCredentials: true
 
 {
-    "name": "Organization 1",
-    "code": "ORG1",
+    "name": "دائرة أمن الاتصالات",
+    "code": "ج-36",
     "phone": "123456789",
     "email": "org-1@inns.com",
     "address": "123, Street, City, Country",
     "website": "http://localhost:3000",
     "avatar": "https://www.google.com",
-    "description": "This is organization 1"
+    "description": "دائرة أمن الاتصالات و لأمن السيبراني هي الجهة المسؤولة عن تأمين البنية التحتية للاتصالات و تأمين البيانات الرقمية و الحماية من الهجمات السيبرانية"
 }
 
 ###
@@ -27,7 +27,7 @@ Accept: application/json
 withCredentials: true
 
 ###
-GET {{baseUrl}}/{{urlPath}}/organizations/66c36d33582b0827065a9415/1
+GET {{baseUrl}}/{{urlPath}}/organizations/66e2d78a6f003fa4395a2e4d/1
 Content-Type: application/json
 Accept: application/json
 withCredentials: true

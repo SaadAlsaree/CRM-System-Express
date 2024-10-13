@@ -10,12 +10,12 @@ Accept: application/json
 withCredentials: true
 
 {
-    "name": "Department 1",
-    "code": "D-1",
+    "name": "قسم الادارة",
+    "code": "ق-1",
     "email": "dep-1@inss.com",
     "phone": "3553534534",
-    "description": "This is organization 1",
-    "directorateId": "66c36f498e5fe8f609cf1469"
+    "description": "قسم الادارة هو الجهة المسؤولة عن إدارة الكتب اليومية للمديرية",
+    "directorateId": "66e2d7af6f003fa4395a2e53"
 }
 
 // create department in organization
@@ -26,12 +26,12 @@ Accept: application/json
 withCredentials: true
 
 {
-    "name": "Department 1",
-    "code": "D-1",
+    "name": "قسم الادارة",
+    "code": "ق-1",
     "email": "dep-1@inss.com",
     "phone": "3553534534",
-    "description": "This is organization 1",
-    "organizationId": "66c36d33582b0827065a9415"
+    "description": "قسم الادارة هو الجهة المسؤولة عن إدارة الكتب اليومية للدائرة",
+    "organizationId": "66e2d78a6f003fa4395a2e4d"
 }
 
 // get all departments in directorate
@@ -43,7 +43,7 @@ withCredentials: true
 
 // get all departments in organization
 ###
-GET {{baseUrl}}/{{urlPath}}/departments/organization/66c37e3107b25d34b6823571
+GET {{baseUrl}}/{{urlPath}}/departments/organization/66e2d78a6f003fa4395a2e4d
 Content-Type: application/json
 Accept: application/json
 withCredentials: true

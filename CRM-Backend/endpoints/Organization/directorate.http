@@ -10,7 +10,7 @@ Accept: application/json
 withCredentials: true
 
 {
-    "name": "مديرية الأتصالات",
+    "name": "مديرية الأمن السيبراني",
     "code": "ج-66",
     "phone": "123456789",
     "email": "org-66@inns.com",
@@ -18,7 +18,7 @@ withCredentials: true
     "website": "http://localhost:3000",
     "avatar": "https://www.google.com",
     "description": "This is organization 1",
-    "organizationId": "66c36d33582b0827065a9415"
+    "organizationId": "66e2d78a6f003fa4395a2e4d"
 }
 
 // get all directorates of no organization
